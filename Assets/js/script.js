@@ -8,9 +8,11 @@ $(".save-button").on("click", function(){
 
     //Save entries to local storage
     localStorage.setItem(entryTime, userEntry);
+    });
+
+    //append current date to top of page using moment.js
+    var currentDate = moment().format("dddd MMMM Do YYYY");
+    $("#currentDay").text(currentDate);
+
+
 });
-
-
-
-
-//display current date
