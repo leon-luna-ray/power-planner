@@ -6,15 +6,26 @@ $(document).ready(function(){
         var entryTime = $(this).parent().attr("id");
         var userEntry = $(this).siblings(".block-entry").val();
 
+
         //Save entries to local storage
         localStorage.setItem(entryTime, userEntry);
         });
 
         //append current date to top of page using moment.js
-        var currentDate = moment().format("dddd MMMM Do YYYY");
-        var currentHour = moment().format("h")
-        console.log(currentHour)
-        $("#currentDay").text(currentDate);
+        var currentDay = moment().format("dddd MMMM Do YYYY");
+        $("#currentDay").text(currentDay)
 
-        $("#0900").attr("id", "past")
+        // Current hour for changing the color
+        var currentHour = moment().format("HH")
+        
+// Need a function that will change the color based on the current time. Figure out how to use "this" again to change the sibling
+
+        // function changeColor(){
+        //     if(currentHour > $(".9").attr(id).val)
+        //     $("#future").attr("id", "#past");
+        // }
+
+// changeColor();
+
+
 }); //jQuery wrapper
