@@ -1,6 +1,6 @@
 Work Day Scheduler v 1.0
 
-* Created time blocks in HTML
+* Created time blocks in HTML.
 
 * Changed styling for color of the time blocks and added margin to the bottom of the page.
 
