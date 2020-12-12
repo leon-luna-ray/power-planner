@@ -14,4 +14,4 @@ Work Day Scheduler v 1.0
 
 * Created jQuery function to dynamically change the color based on the time of the day.
 
-![Application Screenshot](https://github.com/leon-luna-ray/hw05-workday-scheduler/blob/master/Assets/images/screencapture-127-0-0-1-5500-homework-hw05-workday-scheduler-index-html-2020-12-11-22_37_58.png)
+![Application Screenshot](https://github.com/leon-luna-ray/hw05-workday-scheduler/blob/master/Assets/images/screencapture-leon-luna-ray-github-io-hw05-workday-scheduler-2020-12-12-10_09_19.png)
