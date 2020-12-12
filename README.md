@@ -6,4 +6,12 @@ Work Day Scheduler v 1.0
 
 * Used jQuery to create event listeners for each of the block entries and save the entry to local storage.
 
+* Entries are saved to local storage but I could not find a way to retrive it from local storage.
+
 * Imported moment.js for the date and time.
+
+* Appended the current date to the top of the page.
+
+* Created jQuery function to dynamically change the color based on the time of the day.
+
+![Application Screenshot](https://github.com/leon-luna-ray/hw05-workday-scheduler/blob/master/Assets/images/screencapture-127-0-0-1-5500-homework-hw05-workday-scheduler-index-html-2020-12-11-22_37_58.png)
