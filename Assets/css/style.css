@@ -47,8 +47,6 @@ textarea{
   border-top: 1px dashed #000000;
 }
 
-/* Changed to IDs to have them seprate from the classes since these will change with the time */
-
 #future {
   background-color: #77dd77;
   color: white;
