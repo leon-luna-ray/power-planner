@@ -21,7 +21,7 @@ $(document).ready(function(){
         var currentDay = moment().format("dddd MMMM Do YYYY");
         $("#currentDay").text(currentDay)
 
-        // Function to change each block on the hour
+        // Function to change block color based on time of day using moment.js
         $(".block-entry").each(function (){
                 var blockTime = $(this).attr("id");
                 // Converted time to 24h format
