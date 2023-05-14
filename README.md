@@ -21,4 +21,4 @@
 - CSS
 - Netlify
 
-![Application Screenshot](https://github.com/leon-luna-ray/hw05-workday-scheduler/blob/master/Assets/images/screencapture-leon-luna-ray-github-io-hw05-workday-scheduler-2020-12-12-10_09_19.png)
+![Application Screenshot](https://github.com/leon-luna-ray/hw05-workday-scheduler/blob/master/src/images/screencapture-leon-luna-ray-github-io-hw05-workday-scheduler-2020-12-12-10_09_19.png)
