@@ -8,6 +8,8 @@ Work Day Scheduler v 2.0
 * Appended the current date to the top of the page.
 * Created jQuery function to dynamically change the color based on the time of the day.
 
+[https://workday-scheduler-rldev.netlify.app](https://workday-scheduler-rldev.netlify.app)
+
 
 ## Technologies
 - JQuery
