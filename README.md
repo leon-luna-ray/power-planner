@@ -1,4 +1,6 @@
-Work Day Scheduler v 2.0
+# Workday Scheduler
+
+🚧 Currently being refactored 🚧
 
 * Created time blocks in HTML.
 * Changed styling for color of the time blocks and added margin to the bottom of the page.
@@ -8,7 +10,7 @@ Work Day Scheduler v 2.0
 * Appended the current date to the top of the page.
 * Created jQuery function to dynamically change the color based on the time of the day.
 
-[https://workday-scheduler-rldev.netlify.app](https://workday-scheduler-rldev.netlify.app)
+[https://workday-scheduler-rldev.netlify.app/](https://workday-scheduler-rldev.netlify.app/)
 
 
 ## Technologies
