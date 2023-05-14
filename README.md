@@ -1,4 +1,4 @@
-Work Day Scheduler v 1.0
+Work Day Scheduler v 2.0
 
 * Created time blocks in HTML.
 
@@ -15,3 +15,11 @@ Work Day Scheduler v 1.0
 * Created jQuery function to dynamically change the color based on the time of the day.
 
 ![Application Screenshot](https://github.com/leon-luna-ray/hw05-workday-scheduler/blob/master/Assets/images/screencapture-leon-luna-ray-github-io-hw05-workday-scheduler-2020-12-12-10_09_19.png)
+
+## Technologies
+- JQuery
+- JavaScript
+- Vite.js
+- HTML
+- CSS
+- Netlify
