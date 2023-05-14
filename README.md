@@ -1,4 +1,4 @@
-# Workday Scheduler v 2.0
+# Workday Scheduler
 
 🚧 Currently being refactored 🚧
 
