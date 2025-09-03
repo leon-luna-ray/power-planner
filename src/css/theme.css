@@ -1,0 +1,9 @@
+@theme {
+    --color-primary: #4a90e2;   /* Bright Blue */
+    --color-secondary: #ff3366; /* Vivid Pink */
+    --color-tertiary: #ffde59;  /* Neon Yellow */
+    --color-quaternary: #00c2b2;    /* Aqua */
+    --color-quinary: #a259ff;      /* Electric Purple */
+    --color-senary: #ff9900;   /* Orange */
+    --color-septenary: #7fff00;
+}
