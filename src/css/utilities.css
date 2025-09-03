@@ -1,0 +1,12 @@
+@utility border-red {
+    @apply border border-red-500;
+}
+@utility border-green {
+    @apply border border-green-500;
+}
+@utility border-blue {
+    @apply border border-blue-500;
+}
+@utility border-yellow {
+    @apply border border-yellow-500;
+}
