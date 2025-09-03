@@ -1,27 +1,48 @@
 import moment from "moment";
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Event listener for save buttons
-    document.querySelectorAll<HTMLButtonElement>('.save-button').forEach(button => {
-        button.addEventListener('click', function () {
-            const parent = this.parentElement as HTMLElement;
-            const entryTime = parent.id;
-            const userEntry = parent.querySelector<HTMLInputElement>('.block-entry')?.value ?? "";
+import { saveToLocalStorage } from "./localStorage.ts";
 
-            localStorage.setItem(entryTime, userEntry);
+document.addEventListener('DOMContentLoaded', () => {
+    const saveBtns = document.querySelectorAll<HTMLButtonElement>('.save-button');
+    const saveHandlers: Array<(this: HTMLButtonElement, ev: MouseEvent) => void> = [];
+
+    function setEventListeners() {
+        if (!saveBtns.length) return;
+
+        saveBtns.forEach(button => {
+            const handler = function (this: HTMLButtonElement) {
+                const parent = this.parentElement as HTMLElement;
+                const entryTime = parent.id;
+                const userEntry = parent.querySelector<HTMLInputElement>('.block-entry')?.value ?? "";
+                saveToLocalStorage(entryTime, userEntry);
+            };
+            saveHandlers.push(handler);
+            button.addEventListener('click', handler);
         });
-    });
+    }
+
+    function removeEventListeners() {
+        saveBtns.forEach((button, i) => {
+            const handler = saveHandlers[i];
+            if (!handler) return;
+            button.removeEventListener('click', handler);
+        });
+    }
+
+    // Events
+    window.addEventListener('beforeunload', removeEventListeners);
+
+    // Init
+    setEventListeners();
 
     // Append current date
     const currentDay = moment().format("dddd MMMM Do YYYY");
     const currentDayElem = document.getElementById('currentDay');
-    
+
     if (currentDayElem) currentDayElem.textContent = currentDay;
 
     // Update block colors based on time
     const blockEntries = document.querySelectorAll<HTMLInputElement>('.block-entry');
-
-    if (!blockEntries.length) return;
 
     blockEntries.forEach(block => {
         const blockTime = block.id;
