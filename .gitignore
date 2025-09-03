@@ -24,3 +24,4 @@ buildff
 *.sln
 *.sw?
 .env
+.yarn/
