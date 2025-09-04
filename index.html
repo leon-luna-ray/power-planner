@@ -16,44 +16,52 @@
 
 <body>
   <div class="h-screen flex flex-col justify-between">
-    <div>
+    <main>
+      <div class="background-pattern" aria-hidden="true"></div>
+      <div class="window flex flex-col gap-y-[1.25rem]">
+        <header class="lg:mt-[2rem]">
+          <div class="container bg-secondary widget">
+            <div class="title-bar primary">
+              <p x-text="$store.data.label"></p>
+            </div>
+            <div class="flex-col-1 text-center py-[2rem]">
+              <h1 class="logo-text" x-text="$store.data.logo"></h1>
+              <h2 class="subtitle-text" x-text="$store.data.subtitle"></h2>
+            </div>
+            <div class="flex justify-center items-center">
+              <div
+                class="px-[1rem] py-[0.5rem] flex gap-[8px] justify-center items-center bg-gradient-to-r from-magenta via-blue to-aqua w-max font-secondary tracking-[-1px] font-bold text-[1.25rem]">
+                <p class="uppercase">Today:</p>
+                <p id="currentDay" class="lead" x-text="$store.data.day"></p>
+                <p id="currentDate" class="lead" x-text="$store.data.date"></p>
+              </div>
+            </div>
+          </div>
+        </header>
 
-      <header>
-        <div class="container py-[2rem]">
-          <div class="flex-col-05">
-            <h1 class="text-[4rem]" x-text="$store.data.title"></h1>
-            <p class="lead" x-text="$store.data.description"></p>
-          </div>
-          <div class="date">
-            <p id="currentDay" class="lead" x-text="$store.data.day"></p>
-            <p id="currentDate" class="lead" x-text="$store.data.date"></p>
-          </div>
-        </div>
-      </header>
-      <!-- <main>
-        <ul id="time-blocks" x-init="entries = $store.data.getInitializedEntries()">
+        <ul id="time-blocks" x-init="entries = $store.data.getInitializedEntries()"
+          class="flex flex-col gap-y-[1.25rem]">
           <template x-for="day in $store.data.weekdays">
-            <li x-bind:id="day" class="row time-blocks border-black border-[4px]">
-              <div class="col-md-1 hour" x-text="day"></div>
-              <textarea
-              class="col-md-10 block-entry"
-              x-model="entries[day].text"
-              ></textarea>
-              <button
-              class="col-md-1 save-button"
-              x-bind:data-day="day"
-              x-on:click="$store.data.saveDayEntry(day, entries[day].text)"
-              >
-              <i class="fas fa-save"></i>
-            </button>
-          </li>
-        </template>
-      </ul>
-    </main> -->
-    </div>
+            <li x-bind:id="day" class="widget container">
+              <div class="title-bar">
+                <p class="lowercase" x-text="day + '.exe'"></p>
+              </div>
+              <div class="flex-col-05">
+                <p class="label-text text-[1.125rem] font-[900]" x-text="day"></p>
+                <textarea class="p-[1rem] min-h-[150px] border-beveled-aqua bg-black text-white" x-model="entries[day].text" ></textarea>
+              </div>
+              <button class="col-md-1 save-button" x-bind:data-day="day"
+                x-on:click="$store.data.saveDayEntry(day, entries[day].text)">
+                <i class="fas fa-save"></i>
+              </button>
+            </li>
+          </template>
+        </ul>
+
+    </main>
     <footer class="py-[2rem]">
-      <p class="text-center">&copy; <span x-text="$store.data.year"></span> <a href="https://www.rayluna.dev" class="underline"
-          target="_blank" rel="noopener noreferrer">rayluna.dev</a></p>
+      <p class="text-center text-aqua">&copy; <span x-text="$store.data.year"></span> <a href="https://www.rayluna.dev"
+          class="underline" target="_blank" rel="noopener noreferrer">rayluna.dev</a></p>
     </footer>
   </div>
 </body>

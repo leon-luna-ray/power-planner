@@ -1,5 +1,5 @@
 body {
-    @apply underline-offset-2 font-tertiary;
+    @apply underline-offset-2 font-secondary;
 }
 
 h1,
@@ -15,4 +15,28 @@ h6,
 .h5,
 .h6 {
     @apply font-primary;
+}
+
+main .background-pattern {
+    @apply fixed top-0 left-0 bg-navy quad-pattern h-full w-full z-[-1];
+}
+
+textarea {
+    resize: none;
+}
+
+.label-text {
+    @apply uppercase font-bold;
+}
+
+.logo-text {
+    @apply text-[2.8rem] text-aqua tracking-[2px];
+    text-shadow: 
+        0 1px 0 var(--color-gray),
+        0 2px 0 #000,
+        0 5px 5px rgba(0,0,0,0.5);
+}
+
+.subtitle-text {
+    @apply text-magenta font-auxiliary uppercase font-[900] text-[2.4rem] tracking-[-1px];
 }

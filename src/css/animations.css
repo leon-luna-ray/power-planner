@@ -1,0 +1,35 @@
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px #00c2b2, 0 0 40px #00c2b2, 0 0 60px #00c2b2;
+    }
+
+    50% {
+        box-shadow: 0 0 10px #00c2b2, 0 0 20px #00c2b2, 0 0 30px #00c2b2;
+    }
+}
+
+@keyframes scanlines {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(100vh);
+    }
+}

@@ -1,13 +1,17 @@
 @theme {
-    --color-primary: #4a90e2;   /* Bright Blue */
-    --color-secondary: #ff3366; /* Vivid Pink */
-    --color-tertiary: #ffde59;  /* Neon Yellow */
-    --color-quaternary: #00c2b2;    /* Aqua */
-    --color-quinary: #a259ff;      /* Electric Purple */
-    --color-senary: #ff9900;   /* Orange */
-    --color-septenary: #7fff00;
+    --color-teal: #018987;    /* Teal */
+    --color-aqua: #0ac4b1;   /* Aqua */
+    --color-magenta: #f905fc;  /* Magenta */
+    --color-blue: #225be0;   /* Blue */
+    --color-gray: #acb5b2;  /* Gray */
+    --color-navy: #153357;
+    --color-red: #ff6c74;
 
-    --font-primary:  "Aleo", serif;
-    --font-secondary: 'JetBrains Mono', monospace;
-    --font-tertiary: 'Noto Sans', sans-serif;
+    --font-primary:  'Courier Prime', monospace;
+    --font-secondary: 'Share Tech Mono', monospace;
+    --font-auxiliary: 'VT323', monospace;
+
+    --animate-gradient: gradient 15s ease infinite;
+    --animate-glow: glow 1.5s ease-in-out infinite;
+    --animate-scanlines: scanlines 1s linear infinite;
 }

@@ -10,15 +10,24 @@ declare global {
 
 window.Alpine = Alpine;
 
+function autoResize(el: HTMLTextAreaElement) {
+    el.style.height = 'auto';
+    el.style.height = el.scrollHeight + 'px';
+}
+
 Alpine.store("data", {
-    title: 'Weekly Planner',
-    description: 'A simple calendar app for scheduling your work week',
+    title: 'Power Planner',
+    logo:'╔══ POWER PLANNER ══╗',
+    subtitle: 'Digital Organization System',
+    label: '🗓️ Power Planner v2.1',
+    description: 'A simple planning app for scheduling your week',
     day: new Date().toLocaleDateString('en-US', { weekday: 'long' }),
     date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
     weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     year: new Date().getFullYear(),
     saveDayEntry,
     getInitializedEntries,
+    autoResize,
 });
 
 Alpine.start();

@@ -1,4 +1,4 @@
-const STORAGE_KEY = "weekly-planner";
+const STORAGE_KEY = "power-planner";
 
 import type { AppData } from "../types/AppData.ts";
 

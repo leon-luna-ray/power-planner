@@ -1,0 +1,50 @@
+.widget {
+    @apply border-beveled bg-gradient-to-r from-teal to-aqua relative pt-[40px] pb-[20px];
+}
+
+.title-bar {
+    @apply absolute top-0 left-0 w-full h-[24px] px-[8px] py-[4px] text-white flex items-center font-secondary text-[0.85rem] bg-gradient-to-r from-gray-600 to-gray-800;
+}
+
+.title-bar.primary {
+    @apply bg-gradient-to-r from-blue to-navy h-[40px];
+}
+
+.title-bar::after {
+    @apply content-[''] absolute top-[50%] translate-y-[-50%] right-[10px] w-[12px] h-[12px] bg-red;
+}
+
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00c2b2, transparent);
+    animation: scanlines 3s linear infinite;
+}
+
+.retro-window {
+    background: linear-gradient(45deg, #c0c0c0 0%, #e0e0e0 50%, #c0c0c0 100%);
+    border: 2px outset #c0c0c0;
+}
+
+.window-content {
+    background: #008080;
+    border: 2px inset #c0c0c0;
+}
+
+.retro-button {
+    background: linear-gradient(45deg, #c0c0c0 0%, #e0e0e0 50%, #c0c0c0 100%);
+    border: 2px outset #c0c0c0;
+    transition: all 0.1s;
+}
+
+.retro-button:hover {
+    background: linear-gradient(45deg, #d0d0d0 0%, #f0f0f0 50%, #d0d0d0 100%);
+}
+
+.retro-button:active {
+    border: 2px inset #c0c0c0;
+    background: linear-gradient(45deg, #a0a0a0 0%, #c0c0c0 50%, #a0a0a0 100%);
+}
