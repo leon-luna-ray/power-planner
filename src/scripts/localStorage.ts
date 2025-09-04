@@ -1,4 +1,4 @@
-const STORAGE_KEY = "workday-scheduler";
+const STORAGE_KEY = "weekly-planner";
 
 import type { AppData } from "../types/AppData.ts";
 
