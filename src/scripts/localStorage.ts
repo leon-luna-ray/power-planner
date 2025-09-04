@@ -1,4 +1,4 @@
-const STORAGE_KEY = "workday-scheduler";
+const STORAGE_KEY = "power-planner";
 
 import type { AppData } from "../types/AppData.ts";
 
@@ -32,6 +32,17 @@ export function saveDayEntry(day: string, text: string): void {
     const appData = getAppData();
     appData.entries[day] = { text };
     saveAppData(appData);
+}
+
+export function deleteDayEntry(day: string): void {
+    const msg = `Are you sure you want to delete the entry for ${day}? This action cannot be undone.`;
+
+    if (!confirm(msg)) return;
+
+    const appData = getAppData();
+    delete appData.entries[day];
+    saveAppData(appData);
+    location.reload();
 }
 
 export function getAllEntries(): Record<string, { text: string }> {

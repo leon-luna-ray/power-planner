@@ -1,4 +1,4 @@
-# Weekly Planner
+# Power Planner
 
 ![Live Demo](https://img.shields.io/badge/Live%20Demo-Netlify-brightgreen)
 ![GitHub Repo](https://img.shields.io/badge/GitHub%20Repo-View%20Code-blue)
@@ -19,7 +19,7 @@
 
 ## Description
 
-The Weekly Planner is a user-friendly web application designed to help you organize your week effortlessly. It presents each day with dedicated text fields, allowing you to add simple notes, tasks, or reminders. A key feature of this planner is its automatic reset functionality, which clears all notes every Monday, preparing a fresh slate for your new week.
+Power Planner is a simple planner web application designed to help you organize your week effortlessly. It presents each day with dedicated text fields, allowing you to add simple notes, tasks, or reminders. A key feature of this planner is its automatic reset functionality, which clears all notes every Monday, preparing a fresh slate for your new week.
 
 ## Technologies
 
@@ -34,7 +34,7 @@ This project leverages a modern front-end stack to deliver a responsive and inte
 
 Take a look at the application in action:
 
-![Weekly Planner Screenshot](https://github.com/leon-luna-ray/hw05-workday-scheduler/blob/master/src/images/screencapture-leon-luna-ray-github-io-hw05-workday-scheduler-2020-12-12-10_09_19.png)
+![Power Planner Screenshot](./src/images/power-planner.png)
 
 ## Installation
 
@@ -42,11 +42,11 @@ To get a local copy of this project up and running, follow these simple steps:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/leon-luna-ray/workday-scheduler.git
+    git clone https://github.com/leon-luna-ray/power-planner.git
     ```
 2.  **Navigate to the project directory:**
     ```bash
-    cd workday-scheduler
+    cd power-planner
     ```
 3.  **Open `index.html` in your browser:**
     Since this is a client-side application, you can simply open the `index.html` file directly from your file system in any modern web browser.
@@ -63,7 +63,7 @@ Using the Weekly Planner is straightforward:
 
 ## Contributing
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 
@@ -79,4 +79,4 @@ This project is licensed under the MIT License. See the `LICENSE` file (if prese
 
 ---
 
-Made with ❤️ by [Leon Luna Ray](https://github.com/leon-luna-ray)
+Made with ❤️ by [rayluna.dev](https://www.rayluna.dev)

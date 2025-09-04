@@ -1,4 +1,7 @@
+@import './fonts.css';
 @import './base.css';
 @import './components.css';
+@import './theme.css';
+@import './transitions.css';
 @import './utilities.css';
-@import 'tailwindcss'
+@import 'tailwindcss';
