@@ -34,6 +34,17 @@ export function saveDayEntry(day: string, text: string): void {
     saveAppData(appData);
 }
 
+export function deleteDayEntry(day: string): void {
+    const msg = `Are you sure you want to delete the entry for ${day}? This action cannot be undone.`;
+
+    if (!confirm(msg)) return;
+
+    const appData = getAppData();
+    delete appData.entries[day];
+    saveAppData(appData);
+    location.reload();
+}
+
 export function getAllEntries(): Record<string, { text: string }> {
     return getAppData().entries;
 }

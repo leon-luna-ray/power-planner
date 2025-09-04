@@ -1,3 +1,22 @@
+.btn {
+    @apply transition-all-300;
+    background: linear-gradient(45deg, #c0c0c0 0%, #e0e0e0 50%, #c0c0c0 100%);
+    border: 2px outset #c0c0c0;
+    padding: 4px 8px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #d0d0d0 0%, #f0f0f0 50%, #d0d0d0 100%);
+}
+
+.btn:active {
+    border: 2px inset #c0c0c0;
+    background: linear-gradient(45deg, #a0a0a0 0%, #c0c0c0 50%, #a0a0a0 100%);
+}
+
 .widget {
     @apply border-beveled bg-gradient-to-r from-teal to-aqua relative pt-[40px] pb-[20px];
 }

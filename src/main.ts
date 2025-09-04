@@ -1,6 +1,6 @@
 import Alpine from "alpinejs";
 
-import { saveDayEntry, getInitializedEntries } from "./scripts/localStorage.ts";
+import { saveDayEntry, deleteDayEntry, getInitializedEntries } from "./scripts/localStorage.ts";
 
 declare global {
     interface Window {
@@ -26,6 +26,7 @@ Alpine.store("data", {
     weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     year: new Date().getFullYear(),
     saveDayEntry,
+    deleteDayEntry,
     getInitializedEntries,
     autoResize,
 });
