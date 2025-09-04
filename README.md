@@ -1,7 +1,6 @@
 # Power Planner
 
-![Live Demo](https://img.shields.io/badge/Live%20Demo-Netlify-brightgreen)
-![GitHub Repo](https://img.shields.io/badge/GitHub%20Repo-View%20Code-blue)
+[🚀 https://power-planner.pages.dev/](https://power-planner.pages.dev/)
 
 ---
 
