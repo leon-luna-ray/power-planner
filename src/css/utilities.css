@@ -10,3 +10,12 @@
 @utility border-yellow {
     @apply border border-yellow-500;
 }
+@utility flex-col-05 {
+    @apply flex flex-col gap-[0.5rem];
+}
+@utility flex-col-1 {
+    @apply flex flex-col gap-[1rem];
+}
+@utility container {
+    @apply max-w-[1080px] mx-auto px-[1.25rem];
+}

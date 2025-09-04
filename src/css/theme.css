@@ -6,4 +6,8 @@
     --color-quinary: #a259ff;      /* Electric Purple */
     --color-senary: #ff9900;   /* Orange */
     --color-septenary: #7fff00;
+
+    --font-primary:  "Aleo", serif;
+    --font-secondary: 'JetBrains Mono', monospace;
+    --font-tertiary: 'Noto Sans', sans-serif;
 }
