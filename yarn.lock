@@ -676,6 +676,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/alpinejs@npm:^3":
+  version: 3.13.11
+  resolution: "@types/alpinejs@npm:3.13.11"
+  checksum: 10c0/181dcff0af59211043e4121f68548bc2efabe74f71ac397bc20aac7a497f76344e8f327745e621ec5db5b4991d12834b88840ad87e7a28c4a1554930b9e32ad6
+  languageName: node
+  linkType: hard
+
 "@types/estree@npm:1.0.8, @types/estree@npm:^1.0.0":
   version: 1.0.8
   resolution: "@types/estree@npm:1.0.8"
@@ -692,6 +699,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vue/reactivity@npm:~3.1.1":
+  version: 3.1.5
+  resolution: "@vue/reactivity@npm:3.1.5"
+  dependencies:
+    "@vue/shared": "npm:3.1.5"
+  checksum: 10c0/1c38aeb73725b3825bea793194334b232388236f0b06b04471508a77cb55d71841e3eb2f345ab6812c76569918aa8f019e4cdf59ec9cefbab7625bb2bc26eb58
+  languageName: node
+  linkType: hard
+
+"@vue/shared@npm:3.1.5":
+  version: 3.1.5
+  resolution: "@vue/shared@npm:3.1.5"
+  checksum: 10c0/197aa5bdd370177d26ca7a178bb3d3d2332cee2c8e67000bd2bb91b1ffc571d5489fab3a65f38a32e941dc8182d1cd6c6af6e294bb9ea13e01eafdde475319ea
+  languageName: node
+  linkType: hard
+
 "abbrev@npm:^3.0.0":
   version: 3.0.1
   resolution: "abbrev@npm:3.0.1"
@@ -703,6 +726,15 @@ __metadata:
   version: 7.1.4
   resolution: "agent-base@npm:7.1.4"
   checksum: 10c0/c2c9ab7599692d594b6a161559ada307b7a624fa4c7b03e3afdb5a5e31cd0e53269115b620fcab024c5ac6a6f37fa5eb2e004f076ad30f5f7e6b8b671f7b35fe
+  languageName: node
+  linkType: hard
+
+"alpinejs@npm:^3.15.0":
+  version: 3.15.0
+  resolution: "alpinejs@npm:3.15.0"
+  dependencies:
+    "@vue/reactivity": "npm:~3.1.1"
+  checksum: 10c0/67763d9c20221e649218087a412e876b913944bfee85e9c892c41f368499ca7500aba536bceea93cede2c1e45cc1cd4fcb88fac6193646115412c6afdf760e94
   languageName: node
   linkType: hard
 
@@ -1909,7 +1941,9 @@ __metadata:
   dependencies:
     "@rollup/plugin-inject": "npm:^5.0.5"
     "@tailwindcss/vite": "npm:^4.1.12"
+    "@types/alpinejs": "npm:^3"
     "@types/node": "npm:^24.3.0"
+    alpinejs: "npm:^3.15.0"
     jquery: "npm:^3.7.1"
     moment: "npm:^2.30.1"
     tailwindcss: "npm:^4.1.12"

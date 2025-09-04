@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" x-data>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,17 +22,39 @@
     <link rel="stylesheet" href="./src/css/style.css" />
     <link rel="stylesheet" href="./src/css/main.css" />
 
-    <title>Work Day Scheduler</title>
+    <title x-text="$store.data.title"></title>
+    <meta name="description" x-bind:content="$store.data.description" />
   </head>
-
   <body>
     <header class="jumbotron">
-      <h1 class="display-3">Work Day Scheduler</h1>
-      <p class="lead">A simple calendar app for scheduling your work week</p>
-      <p id="currentDay" class="lead"></p>
+      <h1 class="display-3" x-text="$store.data.title"></h1>
+      <p class="lead" x-text="$store.data.description"></p>
+      <p id="currentDay" class="lead" x-text="$store.data.day"></p>
+      <p id="currentDate" class="lead" x-text="$store.data.date"></p>
     </header>
-    <ul id="time-blocks"></ul> <!--- container -->
-
+    <main>
+      <ul id="time-blocks" x-init="entries = $store.data.getInitializedEntries()">
+        <template x-for="day in $store.data.weekdays">
+          <li x-bind:id="day" class="row time-blocks border-black border-[4px]">
+            <div class="col-md-1 hour" x-text="day"></div>
+            <textarea
+              class="col-md-10 block-entry"
+              x-model="entries[day].text"
+              ></textarea>
+            <button
+              class="col-md-1 save-button"
+              x-bind:data-day="day"
+              x-on:click="$store.data.saveDayEntry(day, entries[day].text)"
+              >
+              <i class="fas fa-save"></i>
+            </button>
+          </li>
+        </template>
+      </ul>
+    </main>
+    <footer class="py-[2rem]">
+      <p class="text-center">&copy; <span x-text="$store.data.year"></span> <a href="https://www.rayluna.dev" target="_blank" rel="noopener noreferrer">rayluna.dev</a></p>
+    </footer>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
