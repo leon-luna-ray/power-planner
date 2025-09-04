@@ -322,38 +322,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-inject@npm:^5.0.5":
-  version: 5.0.5
-  resolution: "@rollup/plugin-inject@npm:5.0.5"
-  dependencies:
-    "@rollup/pluginutils": "npm:^5.0.1"
-    estree-walker: "npm:^2.0.2"
-    magic-string: "npm:^0.30.3"
-  peerDependencies:
-    rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
-  peerDependenciesMeta:
-    rollup:
-      optional: true
-  checksum: 10c0/22d10cf44fa56a6683d5ac4df24a9003379b3dcaae9897f5c30c844afc2ebca83cfaa5557f13a1399b1c8a0d312c3217bcacd508b7ebc4b2cbee401bd1ec8be2
-  languageName: node
-  linkType: hard
-
-"@rollup/pluginutils@npm:^5.0.1":
-  version: 5.2.0
-  resolution: "@rollup/pluginutils@npm:5.2.0"
-  dependencies:
-    "@types/estree": "npm:^1.0.0"
-    estree-walker: "npm:^2.0.2"
-    picomatch: "npm:^4.0.2"
-  peerDependencies:
-    rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
-  peerDependenciesMeta:
-    rollup:
-      optional: true
-  checksum: 10c0/794890d512751451bcc06aa112366ef47ea8f9125dac49b1abf72ff8b079518b09359de9c60a013b33266541634e765ae61839c749fae0edb59a463418665c55
-  languageName: node
-  linkType: hard
-
 "@rollup/rollup-android-arm-eabi@npm:4.50.0":
   version: 4.50.0
   resolution: "@rollup/rollup-android-arm-eabi@npm:4.50.0"
@@ -683,7 +651,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/estree@npm:1.0.8, @types/estree@npm:^1.0.0":
+"@types/estree@npm:1.0.8":
   version: 1.0.8
   resolution: "@types/estree@npm:1.0.8"
   checksum: 10c0/39d34d1afaa338ab9763f37ad6066e3f349444f9052b9676a7cc0252ef9485a41c6d81c9c4e0d26e9077993354edf25efc853f3224dd4b447175ef62bdcc86a5
@@ -1000,13 +968,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"estree-walker@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "estree-walker@npm:2.0.2"
-  checksum: 10c0/53a6c54e2019b8c914dc395890153ffdc2322781acf4bd7d1a32d7aedc1710807bdcd866ac133903d5629ec601fbb50abe8c2e5553c7f5a0afdd9b6af6c945af
-  languageName: node
-  linkType: hard
-
 "exponential-backoff@npm:^3.1.1":
   version: 3.1.2
   resolution: "exponential-backoff@npm:3.1.2"
@@ -1180,13 +1141,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jquery@npm:^3.7.1":
-  version: 3.7.1
-  resolution: "jquery@npm:3.7.1"
-  checksum: 10c0/808cfbfb758438560224bf26e17fcd5afc7419170230c810dd11f5c1792e2263e2970cca8d659eb84fcd9acc301edb6d310096e450277d54be4f57071b0c82d9
-  languageName: node
-  linkType: hard
-
 "lightningcss-darwin-arm64@npm:1.30.1":
   version: 1.30.1
   resolution: "lightningcss-darwin-arm64@npm:1.30.1"
@@ -1304,7 +1258,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"magic-string@npm:^0.30.17, magic-string@npm:^0.30.3":
+"magic-string@npm:^0.30.17":
   version: 0.30.18
   resolution: "magic-string@npm:0.30.18"
   dependencies:
@@ -1426,13 +1380,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"moment@npm:^2.30.1":
-  version: 2.30.1
-  resolution: "moment@npm:2.30.1"
-  checksum: 10c0/865e4279418c6de666fca7786607705fd0189d8a7b7624e2e56be99290ac846f90878a6f602e34b4e0455c549b85385b1baf9966845962b313699e7cb847543a
-  languageName: node
-  linkType: hard
-
 "ms@npm:^2.1.3":
   version: 2.1.3
   resolution: "ms@npm:2.1.3"
@@ -1542,6 +1489,20 @@ __metadata:
   checksum: 10c0/5127cc7c91ed7a133a1b7318012d8bfa112da9ef092dddf369ae699a1f10ebbd89b1b9f25f3228795b84585c72aabd5ced5fc11f2ba467eedf7b081a66fad024
   languageName: node
   linkType: hard
+
+"power-planner@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "power-planner@workspace:."
+  dependencies:
+    "@tailwindcss/vite": "npm:^4.1.12"
+    "@types/alpinejs": "npm:^3"
+    "@types/node": "npm:^24.3.0"
+    alpinejs: "npm:^3.15.0"
+    tailwindcss: "npm:^4.1.12"
+    typescript: "npm:^5.9.2"
+    vite: "npm:^7.1.4"
+  languageName: unknown
+  linkType: soft
 
 "proc-log@npm:^5.0.0":
   version: 5.0.0
@@ -1934,23 +1895,6 @@ __metadata:
   checksum: 10c0/e556e4cd8b7dbf5df52408c9a9dd5ac6518c8c5267c8953f5b0564073c66ed5bf9503b14d876d0e9c7844d4db9725fb0dcf45d6e911e17e26ab363dc3965ae7b
   languageName: node
   linkType: hard
-
-"workday-scheduler@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "workday-scheduler@workspace:."
-  dependencies:
-    "@rollup/plugin-inject": "npm:^5.0.5"
-    "@tailwindcss/vite": "npm:^4.1.12"
-    "@types/alpinejs": "npm:^3"
-    "@types/node": "npm:^24.3.0"
-    alpinejs: "npm:^3.15.0"
-    jquery: "npm:^3.7.1"
-    moment: "npm:^2.30.1"
-    tailwindcss: "npm:^4.1.12"
-    typescript: "npm:^5.9.2"
-    vite: "npm:^7.1.4"
-  languageName: unknown
-  linkType: soft
 
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0":
   version: 7.0.0
