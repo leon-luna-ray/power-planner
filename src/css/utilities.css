@@ -5,6 +5,10 @@
     background-size: 20px 20px;
 }
 
+@utility bg-gradient-glow {
+    @apply bg-gradient-to-r from-magenta via-blue to-aqua animate-glow;
+}
+
 @utility bg-texture-window {
     background: repeating-linear-gradient(0deg,
             var(--color-black),
@@ -57,4 +61,16 @@
 
 @utility text-glow {
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }

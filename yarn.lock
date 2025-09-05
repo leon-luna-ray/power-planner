@@ -1048,6 +1048,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gsap@npm:^3.13.0":
+  version: 3.13.0
+  resolution: "gsap@npm:3.13.0"
+  checksum: 10c0/a42dd2e02467a4abe96409aaf6cd0e5d697c72e05ec13c18c2271330493983aa63cc717c9dd0740fda2f884d0f56c7b98fc18b13500f0c1da94864985840da7c
+  languageName: node
+  linkType: hard
+
 "http-cache-semantics@npm:^4.1.1":
   version: 4.2.0
   resolution: "http-cache-semantics@npm:4.2.0"
@@ -1498,6 +1505,7 @@ __metadata:
     "@types/alpinejs": "npm:^3"
     "@types/node": "npm:^24.3.0"
     alpinejs: "npm:^3.15.0"
+    gsap: "npm:^3.13.0"
     tailwindcss: "npm:^4.1.12"
     typescript: "npm:^5.9.2"
     vite: "npm:^7.1.4"
