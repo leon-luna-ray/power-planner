@@ -33,6 +33,10 @@
     @apply content-[''] absolute top-[50%] translate-y-[-50%] right-[10px] w-[12px] h-[12px] bg-red;
 }
 
+.widget {
+    @apply px-[1.25rem];
+}
+
 .scanline {
     position: absolute;
     top: 0;

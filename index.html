@@ -15,55 +15,59 @@
 </head>
 
 <body>
-  <div class="h-screen flex flex-col justify-between">
+  <div class="h-dvh flex flex-col justify-between">
     <main>
       <div class="background-pattern" aria-hidden="true"></div>
       <div class="window flex flex-col gap-y-[1.25rem]">
-        <header class="lg:mt-[2rem]">
-          <div class="container bg-secondary widget">
-            <div class="title-bar primary">
-              <p x-text="$store.data.label"></p>
-            </div>
-            <div class="flex-col-1 text-center py-[2rem]">
-              <h1 class="logo-text" x-text="$store.data.logo"></h1>
-              <h2 class="subtitle-text" x-text="$store.data.subtitle"></h2>
-            </div>
-            <div class="flex justify-center items-center">
-              <div
-                class="px-[1rem] py-[0.5rem] flex gap-[8px] justify-center items-center bg-gradient-to-r from-magenta via-blue to-aqua w-max font-secondary tracking-[-1px] font-bold text-[1.25rem]">
-                <p class="uppercase">Today:</p>
-                <p id="currentDay" class="lead" x-text="$store.data.day"></p>
-                <p id="currentDate" class="lead" x-text="$store.data.date"></p>
+        <header>
+          <div class="container">
+            <div class="bg-secondary widget">
+              <div class="title-bar primary">
+                <p x-text="$store.data.label"></p>
+              </div>
+              <div class="flex-col-1 text-center py-[2rem]">
+                <h1 class="logo-text" x-text="$store.data.logo"></h1>
+                <h2 class="subtitle-text" x-text="$store.data.subtitle"></h2>
+              </div>
+              <div class="flex justify-center items-center">
+                <div
+                  class="px-[1rem] py-[0.5rem] flex gap-[8px] justify-center items-center bg-gradient-to-r from-magenta via-blue to-aqua w-max font-secondary tracking-[-1px] font-bold text-[1.25rem]">
+                  <p class="uppercase">Today:</p>
+                  <p id="currentDay" class="lead" x-text="$store.data.day"></p>
+                  <p id="currentDate" class="lead" x-text="$store.data.date"></p>
+                </div>
               </div>
             </div>
           </div>
         </header>
+        <div class="container">
 
-        <ul id="time-blocks" x-init="entries = $store.data.getInitializedEntries()"
-          class="flex flex-col gap-y-[1.25rem]">
-          <template x-for="day in $store.data.weekdays">
-            <li x-bind:id="day" class="widget container">
-              <div class="title-bar">
-                <p class="lowercase" x-text="day + '.exe'"></p>
-              </div>
-              <div class="flex-col-1">
-                <div class="flex-col-05">
-                  <p class="label-text text-[1.125rem] font-[900]" x-text="day"></p>
-                  <textarea class="p-[1rem] min-h-[150px] border-beveled-aqua bg-black text-white"
-                    x-model="entries[day].text"></textarea>
+          <ul id="time-blocks" x-init="entries = $store.data.getInitializedEntries()"
+            class="flex flex-col gap-y-[1.25rem]">
+            <template x-for="day in $store.data.weekdays">
+              <li x-bind:id="day" class="widget">
+                <div class="title-bar">
+                  <p class="lowercase" x-text="day + '.exe'"></p>
                 </div>
-                <div class="flex items-center justify-end gap-x-[0.85rem]">
-                  <button class="btn" x-on:click="$store.data.deleteDayEntry(day)">
-                    <p>Delete</p>
-                  </button>
-                  <button class="btn" x-on:click="$store.data.saveDayEntry(day, entries[day].text)">
-                    <p>Save</p>
-                  </button>
+                <div class="flex-col-1">
+                  <div class="flex-col-05">
+                    <p class="label-text text-[1.125rem] font-[900]" x-text="day"></p>
+                    <textarea class="p-[1rem] min-h-[150px] border-beveled-aqua bg-black text-white"
+                      x-model="entries[day].text"></textarea>
+                  </div>
+                  <div class="flex items-center justify-end gap-x-[0.85rem]">
+                    <button class="btn" x-on:click="$store.data.deleteDayEntry(day)">
+                      <p>Delete</p>
+                    </button>
+                    <button class="btn" x-on:click="$store.data.saveDayEntry(day, entries[day].text)">
+                      <p>Save</p>
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </li>
-          </template>
-        </ul>
+              </li>
+            </template>
+          </ul>
+        </div>
 
     </main>
     <footer class="py-[2rem]">

@@ -1,5 +1,5 @@
 @utility container {
-    @apply max-w-[1080px] mx-auto px-[1.25rem];
+    @apply max-w-[var(--container-max)] mx-auto px-[1rem];
 }
 
 @utility border-red {

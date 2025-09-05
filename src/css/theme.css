@@ -7,6 +7,9 @@
     --color-navy: #153357;
     --color-red: #ff6c74;
 
+    --breakpoint-max: 1080px;
+    --container-max: 1080px;
+
     --font-primary:  'Courier Prime', monospace;
     --font-secondary: 'Share Tech Mono', monospace;
     --font-auxiliary: 'VT323', monospace;
