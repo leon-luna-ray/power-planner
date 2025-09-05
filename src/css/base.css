@@ -17,10 +17,6 @@ h6,
     @apply font-primary;
 }
 
-main .background-pattern {
-    @apply fixed top-0 left-0 bg-navy bg-quad-pattern h-full w-full z-[-1];
-}
-
 textarea {
     resize: none;
 }

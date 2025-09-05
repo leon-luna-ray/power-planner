@@ -12,6 +12,7 @@
     }
 }
 
+
 @keyframes glow {
 
     0%,
@@ -24,7 +25,7 @@
     }
 }
 
-@keyframes scanlines {
+@keyframes scanline {
     0% {
         transform: translateY(-100%);
     }

@@ -1,7 +1,22 @@
-@utility bg-quad-pattern {
-    background-image:
-        repeating-linear-gradient(0deg, rgba(0, 255, 255, 0.1), rgba(0, 255, 255, 0.1) 1px, transparent 1px, transparent 20px),
-        repeating-linear-gradient(90deg, rgba(0, 255, 255, 0.1), rgba(0, 255, 255, 0.1) 1px, transparent 1px, transparent 20px);
+@utility container {
+    @apply max-w-[var(--container-max)] mx-auto px-[1rem];
+}
+
+@utility bg-gradient-animation {
+    @apply motion-safe:animate-gradient-120;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7209b7 100%);
+    background-size: 500% 500%;
+}
+
+@utility bg-gradient-glow {
+    @apply bg-gradient-to-r from-magenta via-blue to-aqua motion-safe:animate-gradient-30;
+    background-size: 200% 200%;
+}
+
+@utility bg-grid-overlay {
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
     background-size: 20px 20px;
 }
 
@@ -38,9 +53,6 @@
     @apply border border-yellow-500;
 }
 
-@utility container {
-    @apply max-w-[var(--container-max)] mx-auto px-[1rem];
-}
 
 @utility flex-col-05 {
     @apply flex flex-col gap-[0.5rem];
@@ -51,10 +63,11 @@
 }
 
 @utility glow-effect {
+    @apply motion-safe:animate-glow;
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
-    animation: glow 1.5s ease-in-out infinite;
 }
 
-@utility text-glow {
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+@utility scanline-effect {
+    @apply absolute top-0 left-0 right-0 h-[2px] motion-safe:animate-scanline;
+    background: linear-gradient(90deg, transparent, #00c2b2, transparent);
 }
