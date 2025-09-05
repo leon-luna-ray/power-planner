@@ -1,21 +1,15 @@
-@utility container {
-    @apply max-w-[1080px] mx-auto px-[1.25rem];
+@utility bg-quad-pattern {
+    background-image:
+        repeating-linear-gradient(0deg, rgba(0, 255, 255, 0.1), rgba(0, 255, 255, 0.1) 1px, transparent 1px, transparent 20px),
+        repeating-linear-gradient(90deg, rgba(0, 255, 255, 0.1), rgba(0, 255, 255, 0.1) 1px, transparent 1px, transparent 20px);
+    background-size: 20px 20px;
 }
 
-@utility border-red {
-    @apply border border-red-500;
-}
-
-@utility border-green {
-    @apply border border-green-500;
-}
-
-@utility border-blue {
-    @apply border border-blue-500;
-}
-
-@utility border-yellow {
-    @apply border border-yellow-500;
+@utility bg-texture-window {
+    background: repeating-linear-gradient(0deg,
+            var(--color-black),
+            var(--color-aqua) 1px,
+            var(--color-aqua) 2px);
 }
 
 @utility border-beveled {
@@ -28,6 +22,26 @@
     box-shadow: outset 0 1px 0 rgba(255, 255, 255, 0.9), outset 0 -1px 0 rgba(0, 0, 0, 0.5);
 }
 
+@utility border-blue {
+    @apply border border-blue-500;
+}
+
+@utility border-green {
+    @apply border border-green-500;
+}
+
+@utility border-red {
+    @apply border border-red-500;
+}
+
+@utility border-yellow {
+    @apply border border-yellow-500;
+}
+
+@utility container {
+    @apply max-w-[var(--container-max)] mx-auto px-[1rem];
+}
+
 @utility flex-col-05 {
     @apply flex flex-col gap-[0.5rem];
 }
@@ -36,9 +50,11 @@
     @apply flex flex-col gap-[1rem];
 }
 
-@utility quad-pattern {
-    background-image:
-        repeating-linear-gradient(0deg, rgba(0, 255, 255, 0.1), rgba(0, 255, 255, 0.1) 1px, transparent 1px, transparent 20px),
-        repeating-linear-gradient(90deg, rgba(0, 255, 255, 0.1), rgba(0, 255, 255, 0.1) 1px, transparent 1px, transparent 20px);
-    background-size: 20px 20px;
+@utility glow-effect {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
+    animation: glow 1.5s ease-in-out infinite;
+}
+
+@utility text-glow {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
 }

@@ -1,6 +1,6 @@
 const STORAGE_KEY = "power-planner";
 
-import type { AppData } from "../types/AppData.ts";
+import type { AppData } from "@/types/AppData.ts";
 
 function getAppData(): AppData {
     const raw = localStorage.getItem(STORAGE_KEY);

@@ -4,8 +4,12 @@
     --color-magenta: #f905fc;  /* Magenta */
     --color-blue: #225be0;   /* Blue */
     --color-gray: #acb5b2;  /* Gray */
+    --color-light-gray: #d9d9d6;
     --color-navy: #153357;
     --color-red: #ff6c74;
+
+    --breakpoint-max: 1080px;
+    --container-max: 1080px;
 
     --font-primary:  'Courier Prime', monospace;
     --font-secondary: 'Share Tech Mono', monospace;
