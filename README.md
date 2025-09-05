@@ -36,7 +36,7 @@ This project leverages a modern front-end stack to deliver a responsive and inte
 
 Take a look at the application in action:
 
-![Power Planner Screenshot](./src/images/power-planner.png)
+![Power Planner Screenshot](./public/images/power-planner.png)
 
 ## Installation
 
