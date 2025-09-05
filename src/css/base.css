@@ -1,5 +1,5 @@
 body {
-    @apply underline-offset-2 font-secondary bg-gradient-animation;
+    @apply underline-offset-2 font-secondary;
 }
 
 h1,

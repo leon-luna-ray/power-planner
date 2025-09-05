@@ -16,6 +16,7 @@
 
 <body>
   <div class="h-dvh flex flex-col justify-between">
+    <div class="bg-gradient-animation h-full w-full fixed top-0 left-0"></div>
     <div class="bg-grid-overlay h-full w-full fixed top-0 left-0"></div>
     <div class="scanline-effect" aria-hidden="true"></div>
     <main>
@@ -28,7 +29,7 @@
               </div>
               <!-- Logo & Subtitle -->
               <div class="flex-col-1 text-center py-[2rem]">
-                <h1 class="logo-text text-glow" x-text="$store.data.logo"></h1>
+                <h1 class="logo-text" x-text="$store.data.logo"></h1>
                 <div class="flex justify-center items-center">
                   <h2 class="triangle-icons glow-effect subtitle-text px-[1rem]" x-text="$store.data.subtitle"></h2>
                 </div>
@@ -45,36 +46,38 @@
             </div>
           </div>
         </header>
-        <div class="container">
-
-          <ul id="time-blocks" x-init="entries = $store.data.getInitializedEntries()"
-            class="flex flex-col gap-y-[1.25rem]">
-            <template x-for="day in $store.data.weekdays">
-              <li x-bind:id="day" class="widget">
-                <div class="title-bar">
-                  <p class="lowercase" x-text="day + '.exe'"></p>
-                </div>
-                <div class="flex-col-1">
-                  <div class="flex-col-05">
-                    <p class="label-text text-[1.125rem] font-[900]" x-text="day"></p>
-                    <textarea class="p-[1rem] min-h-[150px] border-beveled-aqua bg-black text-white"
-                      x-model="entries[day].text"></textarea>
+        <!-- Time Blocks -->
+        <section>
+          <div class="container">
+            <ul id="time-blocks" x-init="entries = $store.data.getInitializedEntries()"
+              class="flex flex-col gap-y-[1.25rem]">
+              <template x-for="day in $store.data.weekdays">
+                <li x-bind:id="day" class="widget">
+                  <div class="title-bar">
+                    <p class="lowercase" x-text="day + '.exe'"></p>
                   </div>
-                  <div class="flex items-center justify-end gap-x-[0.85rem]">
-                    <button class="btn" x-on:click="$store.data.deleteDayEntry(day)">
-                      <p>Delete</p>
-                    </button>
-                    <button class="btn" x-on:click="$store.data.saveDayEntry(day, entries[day].text)">
-                      <p>Save</p>
-                    </button>
+                  <div class="flex-col-1">
+                    <div class="flex-col-05">
+                      <p class="label-text text-[1.125rem] font-[900]" x-text="day"></p>
+                      <textarea class="p-[1rem] min-h-[150px] border-beveled-aqua bg-black text-white"
+                        x-model="entries[day].text"></textarea>
+                    </div>
+                    <div class="flex items-center justify-end gap-x-[0.85rem]">
+                      <button class="btn" x-on:click="$store.data.deleteDayEntry(day)">
+                        <p>Delete</p>
+                      </button>
+                      <button class="btn" x-on:click="$store.data.saveDayEntry(day, entries[day].text)">
+                        <p>Save</p>
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-            </template>
-          </ul>
-        </div>
+                </li>
+              </template>
+            </ul>
+          </div>
+        </section>
     </main>
-    <footer class="py-[2rem]">
+    <footer class="py-[2rem] z-2">
       <p class="text-center text-aqua">&copy; <span x-text="$store.data.year"></span> <a href="https://www.rayluna.dev"
           class="underline" target="_blank" rel="noopener noreferrer">rayluna.dev</a></p>
     </footer>
