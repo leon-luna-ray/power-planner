@@ -6,13 +6,15 @@
 
 ## Table of Contents
 
-- [Description](#description)
-- [Technologies](#technologies)
-- [Screenshot](#screenshot)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+- [Power Planner](#power-planner)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [Technologies](#technologies)
+  - [Screenshot](#screenshot)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ---
 
@@ -28,6 +30,7 @@ This project leverages a modern front-end stack to deliver a responsive and inte
 *   **TypeScript**: A superset of JavaScript that adds static types, enhancing code quality and maintainability.
 *   **TailwindCSS**: A utility-first CSS framework for rapidly building custom designs.
 *   **HTML**: The standard markup language for creating web pages.
+*   **CSS3**
 
 ## Screenshot
 

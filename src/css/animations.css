@@ -25,7 +25,7 @@
     }
 }
 
-@keyframes scanlines {
+@keyframes scanline {
     0% {
         transform: translateY(-100%);
     }
