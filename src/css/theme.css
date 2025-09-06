@@ -7,11 +7,16 @@
     --color-light-gray: #d9d9d6;
     --color-navy: #153357;
     --color-red: #ff6c74;
+    --color-purple-vivid: #7209b7;
+    --color-purple: #533483;
+    --color-blue-deep: #0f3460;
+    --color-blue-dark: #16213e;
+    --color-blue-midnight: #1a1a2e;
 
     --breakpoint-max: 1080px;
     --container-max: 1080px;
 
-    --font-primary:  'Courier Prime', monospace;
+    --font-primary: 'Courier Prime', monospace;
     --font-secondary: 'Share Tech Mono', monospace;
     --font-auxiliary: 'VT323', monospace;
 

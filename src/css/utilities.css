@@ -3,8 +3,8 @@
 }
 
 @utility bg-gradient-animation {
-    @apply motion-safe:animate-gradient-120;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7209b7 100%);
+    @apply motion-safe:animate-gradient-30;
+    background: linear-gradient(135deg, var(--color-purple-vivid) 0%, var(--color-purple) 25%, var(--color-blue-deep) 50%, var(--color-blue-dark) 75%, var(--color-blue-midnight) 100%);
     background-size: 500% 500%;
 }
 
