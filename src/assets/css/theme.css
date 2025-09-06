@@ -21,7 +21,6 @@
     --font-auxiliary: 'VT323', monospace;
 
     --animate-gradient-30: gradient 30s ease infinite;
-    --animate-gradient-120: gradient 120s ease infinite;
-    --animate-glow: glow 5s ease-in-out infinite;
+    --animate-glow: glow 3s ease-in-out infinite;
     --animate-scanline: scanline 10s linear infinite;
 }
