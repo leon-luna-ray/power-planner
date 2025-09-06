@@ -1,3 +1,4 @@
+import "@/assets/css/main.css";
 import Alpine from "alpinejs";
 
 import { saveDayEntry, deleteDayEntry, getInitializedEntries } from "@/app/api.ts";
@@ -13,7 +14,7 @@ window.Alpine = Alpine;
 const userEntries = await getInitializedEntries() || {};
 
 Alpine.store("data", {
-    title: 'Power Planner',
+    title: 'PowerPlanner',
     logoText: 'POWER PLANNER 95',
     subtitle: 'Digital Organization System',
     label: '🗓️ Power Planner v2.1',

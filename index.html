@@ -8,15 +8,13 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <meta name="description" x-bind:content="$store.data.description" />
   <!-- Favicons -->
-  <link rel="icon" href="./public/favions/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="./public/favions/favicon-16x16.png" sizes="16x16" type="image/png">
-  <link rel="icon" href="./public/favions/favicon-32x32.png" sizes="32x32" type="image/png">
-  <link rel="apple-touch-icon" href="./public/favions/apple-touch-icon.png">
-  <link rel="icon" href="./public/favions/android-chrome-192x192.png" sizes="192x192" type="image/png">
-  <link rel="icon" href="./public/favions/android-chrome-512x512.png" sizes="512x512" type="image/png">
-  <link rel="manifest" href="./public/favions/site.webmanifest">
-
-  <link rel="stylesheet" href="./src/css/main.css" />
+  <link rel="icon" href="/favions/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favions/favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="icon" href="/favions/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/favions/apple-touch-icon.png">
+  <link rel="icon" href="/favions/android-chrome-192x192.png" sizes="192x192" type="image/png">
+  <link rel="icon" href="/favions/android-chrome-512x512.png" sizes="512x512" type="image/png">
+  <link rel="manifest" href="/favions/site.webmanifest">
   <script type="module" src="/src/main.ts"></script>
 </head>
 
@@ -27,19 +25,28 @@
     <div class="scanline-effect" aria-hidden="true"></div>
     <main>
       <div class="window flex flex-col gap-y-[1.25rem]">
+        <!-- Header -->
         <header>
           <div class="container pt-[1rem]">
             <div class="bg-secondary widget">
               <div class="title-bar primary">
                 <p x-text="$store.data.label"></p>
               </div>
-              <!-- Logo & Subtitle -->
               <div class="flex-col-1 text-center py-[2rem]">
-                <div class="logo-text flex gap-x-[0.5rem] items-center justify-center">
-                  <p>╔══</p>
-                  <h1 class="glow-effect uppercase px-[1rem]" x-text="$store.data.logoText"></h1>
-                  <p>══╗</p>
+                <div class="lg:flex-col-1 text-center">
+                  <!-- Main Title -->
+                  <div class="logo-text grid grid-cols-2 md:flex gap-[0.5rem] items-center justify-center">
+                    <div class="flex justify-end items-center">
+                      <p>╔══</p>
+                    </div>
+                    <h1 class="glow-effect uppercase px-[1rem] order-first md:order-none col-span-2"
+                      x-text="$store.data.logoText"></h1>
+                    <div class="flex justify-start items-center">
+                      <p>══╗</p>
+                    </div>
+                  </div>
                 </div>
+                <!-- Subtitle -->
                 <div class="flex justify-center items-center">
                   <h2 class="triangle-icons subtitle-text px-[1rem]" x-text="$store.data.subtitle"></h2>
                 </div>
@@ -47,7 +54,7 @@
               <!-- Datetime -->
               <div class="flex justify-center items-center">
                 <div
-                  class="px-[1rem] py-[0.5rem] flex gap-[8px] justify-center items-center bg-gradient-glow font-secondary tracking-[-1px] font-bold text-[1.25rem]">
+                  class="px-[1rem] py-[0.5rem] flex flex-col lg:flex-row gap-x-[8px] justify-center items-center bg-gradient-glow font-secondary tracking-[-1px] font-bold text-[1.25rem]">
                   <p class="uppercase">Today:</p>
                   <p id="currentDay" class="lead" x-text="$store.data.day"></p>
                   <p id="currentDate" class="lead" x-text="$store.data.date"></p>
@@ -95,4 +102,5 @@
     </footer>
   </div>
 </body>
+
 </html>
