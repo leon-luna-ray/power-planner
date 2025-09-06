@@ -1,4 +1,5 @@
 import { db, type User, type UserSettings, type DayEntry } from './db.ts';
+import { v4 as uuidv4 } from 'uuid';
 
 export const getCurrentUser = async (): Promise<User> => {
     let user = await db.users.get(1);
@@ -10,10 +11,10 @@ export const getCurrentUser = async (): Promise<User> => {
 
 export const createLocalUser = async (): Promise<User> => {
     const timestamp = new Date().toISOString();
-    
-    const userId = await db.users.add({
-        user_id: null,
-        is_registered: false,
+    const userId = uuidv4();
+
+    await db.users.add({
+        id: userId,
         created_at: timestamp,
         updated_at: timestamp
     });
@@ -36,7 +37,7 @@ export const saveDayEntry = async (day: string, text: string): Promise<void> => 
     const existing = await db.dayEntries
         .where('user_local_id')
         .equals(user.id!)
-        .and(entry => entry.day === day)
+        .and((entry: DayEntry) => entry.day === day)
         .first();
 
     if (existing) {
@@ -63,7 +64,7 @@ export const deleteDayEntry = async (day: string): Promise<void> => {
     await db.dayEntries
         .where('user_local_id')
         .equals(user.id!)
-        .and(entry => entry.day === day)
+        .and((entry: DayEntry) => entry.day === day)
         .delete();
 };
 

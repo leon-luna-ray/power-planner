@@ -1516,6 +1516,7 @@ __metadata:
     gsap: "npm:^3.13.0"
     tailwindcss: "npm:^4.1.12"
     typescript: "npm:^5.9.2"
+    uuid: "npm:^12.0.0"
     vite: "npm:^7.1.4"
   languageName: unknown
   linkType: soft
@@ -1832,6 +1833,15 @@ __metadata:
   dependencies:
     imurmurhash: "npm:^0.1.4"
   checksum: 10c0/d324c5a44887bd7e105ce800fcf7533d43f29c48757ac410afd42975de82cc38ea2035c0483f4de82d186691bf3208ef35c644f73aa2b1b20b8e651be5afd293
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^12.0.0":
+  version: 12.0.0
+  resolution: "uuid@npm:12.0.0"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 10c0/242db6735d15a187a0d7f22576db02668f974ffc65d0806b23fe4237cbb0db3153442cb3082c7550784acb6272e5c6c931532916f9604bd814dfab1edf2dac40
   languageName: node
   linkType: hard
 
