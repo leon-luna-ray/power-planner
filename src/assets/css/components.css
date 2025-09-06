@@ -1,6 +1,5 @@
 .btn {
-    @apply transition-all-300 hover:cursor-pointer py-[4px] px-[8px];
-    background: linear-gradient(45deg, #c0c0c0 0%, #e0e0e0 50%, #c0c0c0 100%);
+    @apply transition-all-300 hover:cursor-pointer py-[4px] px-[8px] bg-gradient-gray;
     border: 2px outset #c0c0c0;
 }
 
