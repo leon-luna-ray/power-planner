@@ -81,8 +81,11 @@
                   </div>
                   <div class="flex-col-1">
                     <div class="flex-col-05">
-                      <p class="label-text text-[1.125rem] font-[900]" x-text="day.dayName"></p>
-                      <textarea class="p-[1rem] min-h-[150px] border-beveled-aqua bg-black text-white"
+                      <div class="flex justify-between">
+                        <p class="label-text text-[1.125rem] font-[900]" x-text="day.dayName"></p>
+                        <p class="label-text text-[1.125rem] font-[900]" x-text="day.formattedDate"></p>
+                      </div>
+                      <textarea class="p-[1rem] min-h-[200px] border-beveled-aqua bg-black text-white"
                         x-model="entries[day.dayName].text"></textarea>
                     </div>
                     <div class="flex items-center justify-end gap-x-[0.85rem]">
