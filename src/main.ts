@@ -1,8 +1,6 @@
 import Alpine from "alpinejs";
 
-// import { saveDayEntry, deleteDayEntry, getInitializedEntries } from "@/utils/localStorage.ts";
-import { loadAppData, loadAppData as handleClick, saveDayEntry, deleteDayEntry, getInitializedEntries } from "@/app/api.ts";
-
+import { saveDayEntry, deleteDayEntry, getInitializedEntries } from "@/app/api.ts";
 
 declare global {
     interface Window {
@@ -12,10 +10,7 @@ declare global {
 
 window.Alpine = Alpine;
 
-function autoResize(el: HTMLTextAreaElement) {
-    el.style.height = 'auto';
-    el.style.height = el.scrollHeight + 'px';
-}
+const userEntries = await getInitializedEntries() || {};
 
 Alpine.store("data", {
     title: 'Power Planner',
@@ -29,9 +24,7 @@ Alpine.store("data", {
     year: new Date().getFullYear(),
     saveDayEntry,
     deleteDayEntry,
-    getInitializedEntries,
-    autoResize,
-    handleClick,
+    userEntries,
 });
 
 Alpine.start();

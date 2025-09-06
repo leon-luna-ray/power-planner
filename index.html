@@ -43,15 +43,15 @@
                   <p id="currentDate" class="lead" x-text="$store.data.date"></p>
                 </div>
               </div>
-              <button class="btn" x-on:click="$store.data.handleClick">Save All</button>
+              <!-- Test btn -->
+              <!-- <button class="btn" x-on:click="$store.data.handleClick">Save All</button> -->
             </div>
-
           </div>
         </header>
         <!-- Time Blocks -->
         <section>
           <div class="container">
-            <ul id="time-blocks" x-init="entries = $store.data.getInitializedEntries()"
+            <ul id="time-blocks" x-init="entries = $store.data.userEntries" x-data="{ entries: {} }"
               class="flex flex-col gap-y-[1.25rem]">
               <template x-for="day in $store.data.weekdays">
                 <li x-bind:id="day" class="widget">
@@ -68,7 +68,7 @@
                       <button class="btn" x-on:click="$store.data.deleteDayEntry(day)">
                         <p>Delete</p>
                       </button>
-                      <button class="btn" x-on:click="$store.data.saveDayEntry(day, entries[day].text)">
+                      <button class="btn" x-on:click="$store.data.saveDayEntry(day, entries[day]?.text || '')">
                         <p>Save</p>
                       </button>
                     </div>
