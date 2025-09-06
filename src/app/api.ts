@@ -69,6 +69,9 @@ export const deleteDayEntry = async (day: string): Promise<void> => {
         .equals(user.id!)
         .and((entry: DayEntry) => entry.day === day)
         .delete();
+
+    // TODO improve this to just update the relevant part of the UI
+    window.location.reload();
 };
 
 export const getInitializedEntries = async (): Promise<Record<string, { text: string }>> => {

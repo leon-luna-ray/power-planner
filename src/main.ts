@@ -14,7 +14,7 @@ const userEntries = await getInitializedEntries() || {};
 
 Alpine.store("data", {
     title: 'Power Planner',
-    logo: '╔══ POWER PLANNER 95 ══╗',
+    logoText: 'POWER PLANNER 95',
     subtitle: 'Digital Organization System',
     label: '🗓️ Power Planner v2.1',
     description: 'A simple planning app for scheduling your week',
