@@ -1,17 +1,22 @@
 @theme {
-    --color-teal: #018987;    /* Teal */
-    --color-aqua: #0ac4b1;   /* Aqua */
-    --color-magenta: #f905fc;  /* Magenta */
-    --color-blue: #225be0;   /* Blue */
-    --color-gray: #acb5b2;  /* Gray */
+    --color-teal: #018987;
+    --color-aqua: #0ac4b1;
+    --color-magenta: #f905fc;
+    --color-blue: #225be0;
+    --color-gray: #acb5b2;
     --color-light-gray: #d9d9d6;
     --color-navy: #153357;
     --color-red: #ff6c74;
+    --color-purple-vivid: #7209b7;
+    --color-purple: #533483;
+    --color-blue-deep: #0f3460;
+    --color-blue-dark: #16213e;
+    --color-blue-midnight: #1a1a2e;
 
     --breakpoint-max: 1080px;
     --container-max: 1080px;
 
-    --font-primary:  'Courier Prime', monospace;
+    --font-primary: 'Courier Prime', monospace;
     --font-secondary: 'Share Tech Mono', monospace;
     --font-auxiliary: 'VT323', monospace;
 

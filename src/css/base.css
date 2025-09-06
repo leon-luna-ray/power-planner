@@ -34,5 +34,5 @@ textarea {
 }
 
 .subtitle-text {
-    @apply text-magenta font-auxiliary uppercase font-[900] text-[2.4rem] tracking-[-1px];
+    @apply text-magenta font-auxiliary uppercase font-[900] text-[2.4rem] tracking-[-1px] leading-[120%];
 }

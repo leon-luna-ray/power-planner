@@ -20,7 +20,7 @@
 
 ## Description
 
-Power Planner is a simple planner web application designed to help you organize your week effortlessly. It presents each day with dedicated text fields, allowing you to add simple notes, tasks, or reminders. A key feature of this planner is its automatic reset functionality, which clears all notes every Monday, preparing a fresh slate for your new week.
+Power Planner is a simple planner web application designed to help you organize your week effortlessly. It presents each day with dedicated text fields, allowing you to add simple notes, tasks, or reminders.
 
 ## Technologies
 
@@ -36,7 +36,7 @@ This project leverages a modern front-end stack to deliver a responsive and inte
 
 Take a look at the application in action:
 
-![Power Planner Screenshot](./src/images/power-planner.png)
+![Power Planner Screenshot](./public/images/power-planner.png)
 
 ## Installation
 
