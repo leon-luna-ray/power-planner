@@ -1,0 +1,27 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer gray border -->
+  <rect x="2" y="2" width="28" height="28" fill="#c0c0c0" stroke="#808080" stroke-width="1"/>
+  
+  <!-- Inner shadow/border -->
+  <rect x="3" y="3" width="26" height="26" fill="#c0c0c0" stroke="#404040" stroke-width="1"/>
+  
+  <!-- Blue title bar -->
+  <rect x="4" y="4" width="24" height="6" fill="#0000ff"/>
+  
+  <!-- Title bar highlight -->
+  <rect x="4" y="4" width="24" height="1" fill="#4040ff"/>
+  
+  <!-- White content area -->
+  <rect x="4" y="10" width="24" height="18" fill="#ffffff"/>
+  
+  <!-- Content area inner border -->
+  <rect x="5" y="11" width="22" height="16" fill="#ffffff" stroke="#c0c0c0" stroke-width="1"/>
+  
+  <!-- Small window controls (minimize/maximize/close) -->
+  <rect x="25" y="5" width="2" height="1" fill="#ffffff"/>
+  <rect x="22" y="5" width="2" height="1" fill="#ffffff"/>
+  <rect x="19" y="5" width="2" height="1" fill="#ffffff"/>
+  
+  <!-- EXE text in content area -->
+  <text x="16" y="20" font-family="Arial, sans-serif" font-size="6" text-anchor="middle" fill="#000000">EXE</text>
+</svg>

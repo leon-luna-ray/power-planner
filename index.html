@@ -60,6 +60,10 @@
                   <p id="currentDate" class="lead" x-text="$store.data.date"></p>
                 </div>
               </div>
+              <!-- File menu -->
+               <div class="bg-light-gray p-[1rem] mt-[2rem] flex items-center justify-center gap-x-[1rem]">
+                <img src="./src/assets/images/icons/icon-exe.svg" alt="File menu icon">
+               </div>
               <!-- Test btn -->
               <!-- <button class="btn" x-on:click="$store.data.handleClick">Save All</button> -->
             </div>
@@ -73,19 +77,19 @@
               <template x-for="day in $store.data.weekdays">
                 <li x-bind:id="day" class="widget">
                   <div class="title-bar">
-                    <p class="lowercase" x-text="day + '.exe'"></p>
+                    <p class="lowercase" x-text="day.dayName + '.exe'"></p>
                   </div>
                   <div class="flex-col-1">
                     <div class="flex-col-05">
-                      <p class="label-text text-[1.125rem] font-[900]" x-text="day"></p>
+                      <p class="label-text text-[1.125rem] font-[900]" x-text="day.dayName"></p>
                       <textarea class="p-[1rem] min-h-[150px] border-beveled-aqua bg-black text-white"
-                        x-model="entries[day].text"></textarea>
+                        x-model="entries[day.dayName].text"></textarea>
                     </div>
                     <div class="flex items-center justify-end gap-x-[0.85rem]">
                       <button class="btn" x-on:click="$store.data.deleteDayEntry(day)">
                         <p>Delete</p>
                       </button>
-                      <button class="btn" x-on:click="$store.data.saveDayEntry(day, entries[day]?.text || '')">
+                      <button class="btn" x-on:click="$store.data.saveDayEntry(day, entries[day.dayName]?.text || '')">
                         <p>Save</p>
                       </button>
                     </div>

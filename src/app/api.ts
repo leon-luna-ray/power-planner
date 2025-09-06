@@ -1,5 +1,6 @@
 import { db } from '@/app/db.ts';
 import { v4 as uuidv4 } from 'uuid';
+import { weekdays } from '@/utils/date.ts';
 import type { DayEntry, User } from '@/types/schemas.ts';
 
 export const getCurrentUser = async (): Promise<User> => {
@@ -81,7 +82,6 @@ export const getInitializedEntries = async (): Promise<Record<string, { text: st
         .equals(user.id!)
         .toArray();
 
-    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const initialized: Record<string, { text: string }> = {};
 
     // Always initialize all weekdays, even if no entries exist
