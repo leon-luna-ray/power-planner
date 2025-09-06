@@ -825,6 +825,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dexie@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "dexie@npm:4.2.0"
+  checksum: 10c0/ba3f84a769ee34910263bce0957736968ba05162eebf47d5dab3dbb599890b122ac0d4a64ceb02428e5ec6a39f66923d8531e120c6341709fce1afbc698ea37c
+  languageName: node
+  linkType: hard
+
 "eastasianwidth@npm:^0.2.0":
   version: 0.2.0
   resolution: "eastasianwidth@npm:0.2.0"
@@ -1505,6 +1512,7 @@ __metadata:
     "@types/alpinejs": "npm:^3"
     "@types/node": "npm:^24.3.0"
     alpinejs: "npm:^3.15.0"
+    dexie: "npm:^4.2.0"
     gsap: "npm:^3.13.0"
     tailwindcss: "npm:^4.1.12"
     typescript: "npm:^5.9.2"

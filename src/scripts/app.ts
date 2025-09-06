@@ -1,6 +1,9 @@
 import Alpine from "alpinejs";
 
 import { saveDayEntry, deleteDayEntry, getInitializedEntries } from "@/utils/localStorage.ts";
+import { saveAppData, getAppDataTest as handleClick } from "@/utils/api.ts";
+
+// import { handleClick } from "@/utils/db.ts";
 
 declare global {
     interface Window {
@@ -17,7 +20,7 @@ function autoResize(el: HTMLTextAreaElement) {
 
 Alpine.store("data", {
     title: 'Power Planner',
-    logo:'╔══ POWER PLANNER ══╗',
+    logo: '╔══ POWER PLANNER 95 ══╗',
     subtitle: 'Digital Organization System',
     label: '🗓️ Power Planner v2.1',
     description: 'A simple planning app for scheduling your week',
@@ -29,6 +32,7 @@ Alpine.store("data", {
     deleteDayEntry,
     getInitializedEntries,
     autoResize,
+    handleClick,
 });
 
 Alpine.start();
