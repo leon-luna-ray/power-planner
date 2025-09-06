@@ -1,7 +1,7 @@
 import Alpine from "alpinejs";
 
-import { saveDayEntry, deleteDayEntry, getInitializedEntries } from "@/utils/localStorage.ts";
-import { loadAppData as handleClick } from "@/app/api.ts";
+// import { saveDayEntry, deleteDayEntry, getInitializedEntries } from "@/utils/localStorage.ts";
+import { loadAppData, loadAppData as handleClick, saveDayEntry, deleteDayEntry, getInitializedEntries } from "@/app/api.ts";
 
 
 declare global {
@@ -35,4 +35,3 @@ Alpine.store("data", {
 });
 
 Alpine.start();
-// loadAppData();
