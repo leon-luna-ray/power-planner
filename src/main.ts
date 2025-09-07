@@ -28,9 +28,21 @@ const isDayOpen: Record<Weekday, boolean> = {
 
 const handleClick = () => {
    const store = Alpine.store("data") as any;
-   currentLanguage = currentLanguage === "en" ? "jp" : "en";
-   store.currentLanguage = currentLanguage;
-   console.log(`Language toggled to: ${currentLanguage}`);
+   const newLang = store.currentLanguage === "en" ? "jp" : "en";
+   store.currentLanguage = newLang;
+   
+   // Update all text properties
+   const newContent = content[newLang];
+   store.title = newContent.title;
+   store.logoText = newContent.logoText;
+   store.subtitle = newContent.subtitle;
+   store.label = newContent.label;
+   store.description = newContent.description;
+   store.today = newContent.today;
+   store.deleteBtn = newContent.deleteBtn;
+   store.saveBtn = newContent.saveBtn;
+   
+   console.log(`Language toggled to: ${newLang}`);
 };
 
 const setIsDayOpen = (day: Weekday, value: boolean) => {
@@ -61,34 +73,20 @@ const content = {
     }
 } as const;
 
-type Language = 'en' | 'jp';
-let currentLanguage: Language = 'en';
-
-const getText = (key: keyof typeof content.en): string => {
-    return content[currentLanguage][key];
-};
-
-Alpine.store("data", {
+const store = Alpine.reactive({
     // Current language state
-    currentLanguage: 'en',
+    currentLanguage: 'en' as 'en' | 'jp',
     
-    // Dynamic content getters
-    get title() { return getText('title'); },
-    get logoText() { return getText('logoText'); },
-    get subtitle() { return getText('subtitle'); },
-    get label() { return getText('label'); },
-    get description() { return getText('description'); },
-    get today() { return getText('today'); },
-    get deleteBtn() { return getText('deleteBtn'); },
-    get saveBtn() { return getText('saveBtn'); },
-    
-    // Legacy properties for backward compatibility
-    titleJp: 'パワープランナー',
-    logoTextJp: 'パワープランナー95',
-    subtitleJp: 'デジタル組織システム',
-    labelJp: '🗓️ パワープランナー v2.1',
-    descriptionJp: 'あなたの週を計画するためのシンプルなアプリ',
-    
+    // Dynamic content properties (start with English)
+    title: content.en.title,
+    logoText: content.en.logoText,
+    subtitle: content.en.subtitle,
+    label: content.en.label,
+    description: content.en.description,
+    today: content.en.today,
+    deleteBtn: content.en.deleteBtn,
+    saveBtn: content.en.saveBtn,
+
     day,
     date,
     weekdays: getWeekDates(),
@@ -99,5 +97,7 @@ Alpine.store("data", {
     isDayOpen,
     handleClick,
 });
+
+Alpine.store("data", store);
 
 Alpine.start();
