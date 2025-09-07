@@ -14,7 +14,22 @@ window.Alpine = Alpine;
 
 const userEntries = await getInitializedEntries() || {};
 
-console.log(getWeekDates());
+type Weekday = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
+
+const isDayOpen: Record<Weekday, boolean> = {
+    Monday: false,
+    Tuesday: false,
+    Wednesday: false,
+    Thursday: false,
+    Friday: false,
+    Saturday: false,
+    Sunday: false,
+};
+
+const setIsDayOpen = (day: Weekday, value: boolean) => {
+    isDayOpen[day] = value;
+};
+
 Alpine.store("data", {
     title: 'PowerPlanner',
     logoText: 'POWER PLANNER 95',
@@ -28,6 +43,7 @@ Alpine.store("data", {
     saveDayEntry,
     deleteDayEntry,
     userEntries,
+    isDayOpen,
 });
 
 Alpine.start();
