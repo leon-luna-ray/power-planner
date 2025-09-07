@@ -80,5 +80,6 @@ If you have a suggestion that would make this better, please fork the repo and c
 This project is licensed under the MIT License. See the `LICENSE` file (if present, otherwise assume standard MIT) for more details.
 
 ---
+[About this app](https://rayluna.dev/projects/power-planner)
 
 Made with ❤️ by [rayluna.dev](https://www.rayluna.dev)
