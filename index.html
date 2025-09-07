@@ -55,10 +55,11 @@
               <div class="flex justify-center items-center mb-[180px] md:mb-[120px]">
                 <div
                   class="px-[1rem] py-[0.5rem] flex flex-col md:flex-row gap-x-[8px] justify-center items-center bg-gradient-glow font-secondary tracking-[-1px] font-bold text-[1.25rem]">
-                  <p class="uppercase">Today:</p>
+                  <p class="uppercase" x-text="$store.data.today"></p>
                   <p id="currentDay" class="lead" x-text="$store.data.day"></p>
                   <p id="currentDate" class="lead" x-text="$store.data.date"></p>
                 </div>
+                <button class="btn" x-on:click="$store.data.handleClick">PUSH IT</button>
               </div>
               <!-- File menu -->
               <div class="absolute bottom-0 left-0 w-full">
@@ -75,7 +76,6 @@
                 </ul>
               </div>
               <!-- Test btn -->
-              <!-- <button class="btn" x-on:click="$store.data.handleClick">Save All</button> -->
             </div>
           </div>
         </header>
@@ -100,10 +100,10 @@
                     </div>
                     <div class="flex items-center justify-end gap-x-[0.85rem]">
                       <button class="btn" x-on:click="$store.data.deleteDayEntry(day)">
-                        <p>Delete</p>
+                        <p x-text="$store.data.deleteBtn"></p>
                       </button>
                       <button class="btn" x-on:click="$store.data.saveDayEntry(day, entries[day.dayName]?.text || '')">
-                        <p>Save</p>
+                        <p x-text="$store.data.saveBtn"></p>
                       </button>
                     </div>
                   </div>
