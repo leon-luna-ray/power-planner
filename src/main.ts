@@ -2,7 +2,7 @@ import "@/assets/css/main.css";
 import Alpine from "alpinejs";
 
 import { saveDayEntry, deleteDayEntry, getInitializedEntries } from "@/app/api.ts";
-import { day, date, getWeekDates, year } from "@/utils/date.ts";
+import { day, date, getWeekDates, getLocalizedDay, getLocalizedDate, year } from "@/utils/date.ts";
 
 declare global {
     interface Window {
@@ -41,6 +41,11 @@ const handleClick = () => {
    store.today = newContent.today;
    store.deleteBtn = newContent.deleteBtn;
    store.saveBtn = newContent.saveBtn;
+   
+   // Update date formatting based on language
+   store.day = getLocalizedDay(newLang);
+   store.date = getLocalizedDate(newLang);
+   store.weekdays = getWeekDates(newLang);
    
    console.log(`Language toggled to: ${newLang}`);
 };
