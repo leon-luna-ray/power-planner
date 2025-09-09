@@ -8,6 +8,24 @@ export interface DayEntry {
   updated_at: string;
 }
 
+export interface UserUiSettings {
+  id?: number;
+  user_local_id: number; // References User.id
+  language: string;
+  is_dark_mode: boolean;
+  is_day_panel_open: {
+    sunday: boolean;
+    monday: boolean;
+    tuesday: boolean;
+    wednesday: boolean;
+    thursday: boolean;
+    friday: boolean;
+    saturday: boolean;
+  };
+  created_at: string;
+  updated_at: string;
+}
+
 export interface User {
   id?: number;
   user_id: string | null; // null for local users, UUID for registered users
@@ -20,7 +38,7 @@ export interface User {
 export interface UserSettings {
   id?: number;
   user_local_id: number; // References User.id
-  dark_mode: boolean;
+  user_ui_settings: UserUiSettings;
   timezone?: string;
   created_at: string;
   updated_at: string;
