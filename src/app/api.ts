@@ -3,7 +3,18 @@ import { v4 as uuidv4 } from 'uuid';
 import { weekdays } from '@/utils/date.ts';
 import type { DayEntry, User } from '@/types/schemas.ts';
 
+export const initializeDatabase = async (): Promise<void> => {
+    try {
+        await db.open();
+        console.log('Database initialized successfully');
+    } catch (error) {
+        console.error('Failed to initialize database:', error);
+        throw error;
+    }
+};
+
 export const getCurrentUser = async (): Promise<User> => {
+    await initializeDatabase();
     // Get the first user instead of assuming ID ()
     let user = await db.users.orderBy('created_at').first();
     if (!user) {
@@ -34,33 +45,39 @@ export const createLocalUser = async (): Promise<User> => {
 };
 
 export const saveDayEntry = async (day: string, text: string): Promise<void> => {
+    const dayString = day.dayName;
+    console.log("Saving day entry:", dayString, text);
+    const textString = String(text);
     const user = await getCurrentUser();
     const timestamp = new Date().toISOString();
     const existing = await db.entries
         .where('user_local_id')
         .equals(user.id!)
-        .and((entry: DayEntry) => entry.day === day)
+        .and((entry: DayEntry) => entry.day === dayString)
         .first();
 
+    const entryData = {
+        user_local_id: user.id!,
+        day: dayString,
+        text: textString,
+        created_at: timestamp,
+        updated_at: timestamp
+    };
+    
     if (existing) {
         await db.entries.update(existing.id!, {
-            text,
+            text: textString,
             updated_at: timestamp
         });
     } else {
-        // Create new entry if it doesn't exist
-        await db.entries.add({
-            user_local_id: user.id!,
-            day,
-            text,
-            created_at: timestamp,
-            updated_at: timestamp
-        });
+        await db.entries.add(entryData);
     }
 };
 
+
 export const deleteDayEntry = async (day: string): Promise<void> => {
-    const msg = `Are you sure you want to delete the entry for ${day}? This action cannot be undone.`;
+    const dayString = String(day);
+    const msg = `Are you sure you want to delete the entry for ${dayString}? This action cannot be undone.`;
     if (!confirm(msg)) return;
 
     const user = await getCurrentUser();
@@ -68,7 +85,7 @@ export const deleteDayEntry = async (day: string): Promise<void> => {
     await db.entries
         .where('user_local_id')
         .equals(user.id!)
-        .and((entry: DayEntry) => entry.day === day)
+        .and((entry: DayEntry) => entry.day === dayString)
         .delete();
 
     // TODO improve this to just update the relevant part of the UI
@@ -87,7 +104,7 @@ export const getInitializedEntries = async (): Promise<Record<string, { text: st
     // Always initialize all weekdays, even if no entries exist
     weekdays.forEach(day => {
         const entry = entries.find((e: DayEntry) => e.day === day);
-        initialized[day] = { text: entry?.text || '' };
+        initialized[day] = { text: entry?.text || '' }; // Remove JSON.parse
     });
 
     return initialized;
