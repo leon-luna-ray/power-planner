@@ -3,6 +3,8 @@ import Alpine from "alpinejs";
 
 import { saveDayEntry, deleteDayEntry, getInitializedEntries } from "@/app/api.ts";
 import { day, date, getWeekDates, getLocalizedDay, getLocalizedDate, year } from "@/utils/date.ts";
+import type { Weekday } from '@/types/Date.ts';
+import { getCurrentUiSettings  } from '@/app/api.ts'
 
 declare global {
     interface Window {
@@ -13,45 +15,11 @@ declare global {
 window.Alpine = Alpine;
 
 const userEntries = await getInitializedEntries() || {};
-
-type Weekday = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
-
-const isDayOpen: Record<Weekday, boolean> = {
-    Monday: false,
-    Tuesday: false,
-    Wednesday: false,
-    Thursday: false,
-    Friday: false,
-    Saturday: false,
-    Sunday: false,
-};
+const userSettings = await getCurrentUiSettings();
 
 const handleClick = () => {
-   const store = Alpine.store("data") as any;
-   const newLang = store.currentLanguage === "en" ? "jp" : "en";
-   store.currentLanguage = newLang;
-   
-   // Update all text properties
-   const newContent = content[newLang];
-   store.title = newContent.title;
-   store.logoText = newContent.logoText;
-   store.subtitle = newContent.subtitle;
-   store.label = newContent.label;
-   store.description = newContent.description;
-   store.today = newContent.today;
-   store.deleteBtn = newContent.deleteBtn;
-   store.saveBtn = newContent.saveBtn;
-   
-   // Update date formatting based on language
-   store.day = getLocalizedDay(newLang);
-   store.date = getLocalizedDate(newLang);
-   store.weekdays = getWeekDates(newLang);
-   
-   console.log(`Language toggled to: ${newLang}`);
-};
-
-const setIsDayOpen = (day: Weekday, value: boolean) => {
-    isDayOpen[day] = value;
+    console.log('Button clicked');
+    console.log(userSettings)
 };
 
 // Language content
@@ -82,7 +50,6 @@ const store = Alpine.reactive({
     // Current language state
     currentLanguage: 'en' as 'en' | 'jp',
     
-    // Dynamic content properties (start with English)
     title: content.en.title,
     logoText: content.en.logoText,
     subtitle: content.en.subtitle,
@@ -91,7 +58,6 @@ const store = Alpine.reactive({
     today: content.en.today,
     deleteBtn: content.en.deleteBtn,
     saveBtn: content.en.saveBtn,
-
     day,
     date,
     weekdays: getWeekDates(),
@@ -99,7 +65,6 @@ const store = Alpine.reactive({
     saveDayEntry,
     deleteDayEntry,
     userEntries,
-    isDayOpen,
     handleClick,
 });
 

@@ -8,9 +8,19 @@ export interface DayEntry {
   updated_at: string;
 }
 
-export interface UserUiSettings {
+export interface User {
   id?: number;
-  user_local_id: number; // References User.id
+  user_id: string | null; // null for local users, UUID for registered users
+  email?: string;
+  is_registered: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface UserSettings {
+  id?: number;
+  user_local_id: number;
+  timezone?: string;
   language: string;
   is_dark_mode: boolean;
   is_day_panel_open: {
@@ -24,28 +34,4 @@ export interface UserUiSettings {
   };
   created_at: string;
   updated_at: string;
-}
-
-export interface User {
-  id?: number;
-  user_id: string | null; // null for local users, UUID for registered users
-  email?: string;
-  is_registered: boolean;
-  created_at: string;
-  updated_at: string;
-}
-
-export interface UserSettings {
-  id?: number;
-  user_local_id: number; // References User.id
-  user_ui_settings: UserUiSettings;
-  timezone?: string;
-  created_at: string;
-  updated_at: string;
-}
-
-// Legacy interface for backward compatibility
-export interface AppData {
-  darkMode: boolean;
-  entries: Record<string, { text: string }>;
 }

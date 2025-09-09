@@ -4,3 +4,5 @@ export interface Date {
     formattedDate: string;
     isToday: boolean;
 }
+
+export type Weekday = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";

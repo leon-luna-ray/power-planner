@@ -37,11 +37,29 @@ export const createLocalUser = async (): Promise<User> => {
     await db.userSettings.add({
         user_local_id: newUser,
         dark_mode: false,
+        language: 'en',
+        is_day_panel_open: {
+            sunday: false,
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+            saturday: false
+        },
         created_at: timestamp,
         updated_at: timestamp
     });
 
     return await db.users.get(newUser) as User;
+};
+
+export const getCurrentUiSettings = async () => {
+    const user = await getCurrentUser();
+    return await db.userSettings
+        .where('user_local_id')
+        .equals(user.id!)
+        .first();
 };
 
 export const saveDayEntry = async (day: Date, text: string): Promise<void> => {
