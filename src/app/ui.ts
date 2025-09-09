@@ -2,20 +2,9 @@ import { liveQuery } from 'dexie';
 import { db } from '@/app/db.ts';
 import { getCurrentUser, getCurrentUiSettings } from './api.ts';
 
+// Panel Open Selection
 
-
-export const updateDayPanelState = async (day: string, isOpen: boolean): Promise<void> => {
-    const user = await getCurrentUser();
-    const timestamp = new Date().toISOString();
-
-    await db.userUiSettings
-        .where('user_local_id')
-        .equals(user.id!)
-        .modify({
-            [`is_day_panel_open.${day}`]: isOpen,
-            updated_at: timestamp
-        });
-};
+// Add function to handle reactive panel open/close and update db in the bg
 
 // Language selection
 // const handleLanguageChange = () => {
