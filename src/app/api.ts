@@ -7,7 +7,6 @@ import type { Date } from '@/types/Date.ts';
 export const initializeDatabase = async (): Promise<void> => {
     try {
         await db.open();
-        console.log('Database initialized successfully');
     } catch (error) {
         console.error('Failed to initialize database:', error);
         throw error;
@@ -16,7 +15,7 @@ export const initializeDatabase = async (): Promise<void> => {
 
 export const getCurrentUser = async (): Promise<User> => {
     await initializeDatabase();
-    // Get the first user instead of assuming ID ()
+    // TODO refactor fetch user
     let user = await db.users.orderBy('created_at').first();
     if (!user) {
         user = await createLocalUser();
@@ -47,7 +46,7 @@ export const createLocalUser = async (): Promise<User> => {
 
 export const saveDayEntry = async (day: Date, text: string): Promise<void> => {
     const textString = String(text);
-    
+
     const user = await getCurrentUser();
     const timestamp = new Date().toISOString();
     const existing = await db.entries
@@ -63,7 +62,7 @@ export const saveDayEntry = async (day: Date, text: string): Promise<void> => {
         created_at: timestamp,
         updated_at: timestamp
     };
-    
+
     if (existing) {
         await db.entries.update(existing.id!, {
             text: textString,
@@ -75,9 +74,8 @@ export const saveDayEntry = async (day: Date, text: string): Promise<void> => {
 };
 
 
-export const deleteDayEntry = async (day: string): Promise<void> => {
-    const dayString = String(day);
-    const msg = `Are you sure you want to delete the entry for ${dayString}? This action cannot be undone.`;
+export const deleteDayEntry = async (day: Date): Promise<void> => {
+    const msg = `Are you sure you want to delete the entry for ${day.dayName}? This action cannot be undone.`;
     if (!confirm(msg)) return;
 
     const user = await getCurrentUser();
@@ -85,7 +83,7 @@ export const deleteDayEntry = async (day: string): Promise<void> => {
     await db.entries
         .where('user_local_id')
         .equals(user.id!)
-        .and((entry: DayEntry) => entry.day === dayString)
+        .and((entry: DayEntry) => entry.day === day.dayName)
         .delete();
 
     // TODO improve this to just update the relevant part of the UI
@@ -101,10 +99,10 @@ export const getInitializedEntries = async (): Promise<Record<string, { text: st
 
     const initialized: Record<string, { text: string }> = {};
 
-    // Always initialize all weekdays, even if no entries exist
+    // Initialize weekdays
     weekdays.forEach(day => {
         const entry = entries.find((e: DayEntry) => e.day === day);
-        initialized[day] = { text: entry?.text || '' }; // Remove JSON.parse
+        initialized[day] = { text: entry?.text || '' };
     });
 
     return initialized;
