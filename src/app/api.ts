@@ -2,6 +2,7 @@ import { db } from '@/app/db.ts';
 import { v4 as uuidv4 } from 'uuid';
 import { weekdays } from '@/utils/date.ts';
 import type { DayEntry, User } from '@/types/schemas.ts';
+import type { Date } from '@/types/Date.ts';
 
 export const initializeDatabase = async (): Promise<void> => {
     try {
@@ -44,21 +45,20 @@ export const createLocalUser = async (): Promise<User> => {
     return await db.users.get(newUser) as User;
 };
 
-export const saveDayEntry = async (day: string, text: string): Promise<void> => {
-    const dayString = day.dayName;
-    console.log("Saving day entry:", dayString, text);
+export const saveDayEntry = async (day: Date, text: string): Promise<void> => {
     const textString = String(text);
+    
     const user = await getCurrentUser();
     const timestamp = new Date().toISOString();
     const existing = await db.entries
         .where('user_local_id')
         .equals(user.id!)
-        .and((entry: DayEntry) => entry.day === dayString)
+        .and((entry: DayEntry) => entry.day === day.dayName)
         .first();
 
     const entryData = {
         user_local_id: user.id!,
-        day: dayString,
+        day: day?.dayName,
         text: textString,
         created_at: timestamp,
         updated_at: timestamp
