@@ -17,13 +17,13 @@ export const getLocalizedDate = (locale: 'en' | 'jp' = 'en') => {
 export const day = getLocalizedDay('en');
 export const date = getLocalizedDate('en');
 
-export const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+export const weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
 export const getLocalizedWeekdays = (locale: 'en' | 'jp' = 'en') => {
     if (locale === 'jp') {
         return ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日'];
     }
-    return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    return ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 };
 
 export const getWeekDates = (locale: 'en' | 'jp' = 'en') => {
