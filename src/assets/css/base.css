@@ -21,6 +21,10 @@ textarea {
     resize: none;
 }
 
+button, .btn {
+    @apply hover:cursor-pointer;
+}
+
 .label-text {
     @apply uppercase font-bold;
 }

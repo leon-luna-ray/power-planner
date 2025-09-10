@@ -19,10 +19,10 @@
 </head>
 
 <body>
-  <div class="h-dvh flex flex-col justify-between">
+  <div class="h-screen flex flex-col justify-between">
     <div class="bg-gradient-animation h-full w-full fixed top-0 left-0"></div>
     <div class="bg-grid-overlay h-full w-full fixed top-0 left-0"></div>
-    <div class="scanline-effect" aria-hidden="true"></div>
+    <!-- <div class="scanline-effect" aria-hidden="true"></div> -->
     <main>
       <div class="window flex flex-col gap-y-[1.25rem]">
         <!-- Header -->
@@ -36,12 +36,12 @@
                 <div class="lg:flex-col-1 text-center">
                   <!-- Main Title -->
                   <div class="logo-text grid grid-cols-2 md:flex gap-[0.5rem] items-center justify-center">
-                    <div class="flex justify-end items-center">
+                    <div class="hidden md:flex justify-end items-center">
                       <p>╔══</p>
                     </div>
                     <h1 class="glow-effect uppercase px-[1rem] order-first md:order-none col-span-2"
                       x-text="$store.data.logoText"></h1>
-                    <div class="flex justify-start items-center">
+                    <div class="hidden md:flex justify-start items-center">
                       <p>══╗</p>
                     </div>
                   </div>
@@ -52,16 +52,36 @@
                 </div>
               </div>
               <!-- Datetime -->
-              <div class="flex justify-center items-center">
+              <div class="flex justify-center items-center mb-[180px] md:mb-[120px]">
                 <div
-                  class="px-[1rem] py-[0.5rem] flex flex-col lg:flex-row gap-x-[8px] justify-center items-center bg-gradient-glow font-secondary tracking-[-1px] font-bold text-[1.25rem]">
-                  <p class="uppercase">Today:</p>
+                  class="px-[1rem] py-[0.5rem] flex flex-col md:flex-row gap-x-[8px] justify-center items-center bg-gradient-glow font-secondary tracking-[-1px] font-bold text-[1.25rem]">
+                  <p class="uppercase" x-text="$store.data.today"></p>
                   <p id="currentDay" class="lead" x-text="$store.data.day"></p>
                   <p id="currentDate" class="lead" x-text="$store.data.date"></p>
                 </div>
+                <!-- <div class="flex justify-center items-center py-[2rem]">
+                  <button class="btn" x-on:click="$store.data.handleClick">🇺🇸/🇯🇵</button>
+                </div> -->
               </div>
-              <!-- Test btn -->
-              <!-- <button class="btn" x-on:click="$store.data.handleClick">Save All</button> -->
+              <!-- File menu -->
+              <div class="absolute bottom-0 left-0 w-full">
+                <ul
+                  class="flex items-center justify-center gap-x-[2rem] gap-y-[1rem] bg-gradient-gray py-[1rem] md:max-h-[88px] flex-wrap px-[2rem] lg:px-0">
+                  <template x-for="day in $store.data.weekdays">
+                    <li :key="day.dayName" class="file-btn"
+                      :class="{ 'active' : $store.data.isDayPanelOpen[day.dayName] }">
+                      <button class="flex flex-col items-center gap-y-[0.25rem]"
+                        x-on:click="$store.data.toggleDayPanel(day.dayName)" x-bind:aria-label="`Open file menu for ${day.dayName}`">
+                        <div class="flex flex-col items-center gap-y-[0.25rem] [&_*]:z-1 relative">
+                          <div class="file-btn-indicator" aria-hidden="true"></div>
+                          <img src="./src/assets/images/icons/icon-exe.svg" alt="File menu icon">
+                        </div>
+                        <p class="lowercase text-[0.85rem] font-[400]" x-text="day.dayName"></p>
+                      </button>
+                    </li>
+                  </template>
+                </ul>
+              </div>
             </div>
           </div>
         </header>
@@ -71,22 +91,26 @@
             <ul id="time-blocks" x-init="entries = $store.data.userEntries" x-data="{ entries: {} }"
               class="flex flex-col gap-y-[1.25rem]">
               <template x-for="day in $store.data.weekdays">
-                <li x-bind:id="day" class="widget">
+                <li x-bind:id="day" x-show="$store.data.isDayPanelOpen[day.dayName]" x-transition class="widget">
                   <div class="title-bar">
-                    <p class="lowercase" x-text="day + '.exe'"></p>
+                    <p class="lowercase" x-text="day.dayName + '.exe'"></p>
+                    <button x-on:click="$store.data.toggleDayPanel(day.dayName)" class="close-window-btn" aria-label="Close window"></button>
                   </div>
                   <div class="flex-col-1">
                     <div class="flex-col-05">
-                      <p class="label-text text-[1.125rem] font-[900]" x-text="day"></p>
-                      <textarea class="p-[1rem] min-h-[150px] border-beveled-aqua bg-black text-white"
-                        x-model="entries[day].text"></textarea>
+                      <div class="flex justify-between">
+                        <p class="label-text text-[1.125rem] font-[900]" x-text="day.dayName"></p>
+                        <p class="label-text text-[1.125rem] font-[900]" x-text="day.formattedDate"></p>
+                      </div>
+                      <textarea class="p-[1rem] min-h-[272px] border-beveled-aqua bg-black text-white"
+                        x-model="entries[day.dayName].text"></textarea>
                     </div>
                     <div class="flex items-center justify-end gap-x-[0.85rem]">
                       <button class="btn" x-on:click="$store.data.deleteDayEntry(day)">
-                        <p>Delete</p>
+                        <p x-text="$store.data.deleteBtn"></p>
                       </button>
-                      <button class="btn" x-on:click="$store.data.saveDayEntry(day, entries[day]?.text || '')">
-                        <p>Save</p>
+                      <button class="btn" x-on:click="$store.data.saveDayEntry(day, entries[day.dayName]?.text || '')">
+                        <p x-text="$store.data.saveBtn"></p>
                       </button>
                     </div>
                   </div>
@@ -95,6 +119,7 @@
             </ul>
           </div>
         </section>
+      </div>
     </main>
     <footer class="py-[2rem] z-2">
       <p class="text-center text-aqua">&copy; <span x-text="$store.data.year"></span> <a href="https://www.rayluna.dev"

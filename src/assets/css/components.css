@@ -1,6 +1,5 @@
 .btn {
-    @apply transition-all-300 hover:cursor-pointer py-[4px] px-[8px];
-    background: linear-gradient(45deg, #c0c0c0 0%, #e0e0e0 50%, #c0c0c0 100%);
+    @apply transition-all-300 hover:cursor-pointer py-[4px] px-[8px] bg-gradient-gray;
     border: 2px outset #c0c0c0;
 }
 
@@ -13,17 +12,26 @@
     background: linear-gradient(45deg, #a0a0a0 0%, #c0c0c0 50%, #a0a0a0 100%);
 }
 
+.close-window-btn {
+    @apply w-[12px] h-[12px] bg-red;
+}
+
+.file-btn {
+    @apply relative;
+}
+
+.file-btn.active .file-btn-indicator {
+    @apply z-0 bg-magenta rounded-full w-[42px] h-[42px] absolute top-0 left-0 translate-x-[-5px] translate-y-[-3px];
+}
+
 .title-bar {
-    @apply absolute top-0 left-0 w-full h-[24px] px-[8px] py-[4px] text-white flex items-center font-secondary text-[0.85rem] bg-gradient-to-r from-gray-600 to-gray-800;
+    @apply absolute top-0 left-0 w-full h-[24px] px-[8px] py-[4px] text-white flex items-center justify-between font-secondary text-[0.85rem] bg-gradient-to-r from-gray-600 to-gray-800;
 }
 
 .title-bar.primary {
     @apply bg-gradient-to-r from-blue to-navy h-[40px];
 }
 
-.title-bar::after {
-    @apply content-[''] absolute top-[50%] translate-y-[-50%] right-[10px] w-[12px] h-[12px] bg-red;
-}
 
 .widget {
     @apply border-beveled bg-gradient-to-r from-teal to-aqua relative pt-[40px] pb-[20px] px-[1.25rem] bg-texture-window;
