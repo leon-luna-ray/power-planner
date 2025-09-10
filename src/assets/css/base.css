@@ -1,5 +1,5 @@
 body {
-    @apply underline-offset-2 font-secondary;
+    @apply underline-offset-2 font-secondary hide-scrollbars;
 }
 
 h1,

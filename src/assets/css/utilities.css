@@ -80,3 +80,7 @@
     @apply absolute top-0 left-0 right-0 h-[2px] motion-safe:animate-scanline;
     background: linear-gradient(90deg, transparent, #00c2b2, transparent);
 }
+@utility hide-scrollbars {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}

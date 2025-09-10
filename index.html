@@ -94,6 +94,7 @@
                 <li x-bind:id="day" x-show="$store.data.isDayPanelOpen[day.dayName]" x-transition class="widget">
                   <div class="title-bar">
                     <p class="lowercase" x-text="day.dayName + '.exe'"></p>
+                    <button x-on:click="$store.data.toggleDayPanel(day.dayName)" class="close-window-btn" aria-label="Close window"></button>
                   </div>
                   <div class="flex-col-1">
                     <div class="flex-col-05">
