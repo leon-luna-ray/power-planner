@@ -1,7 +1,7 @@
 // Locale-aware date formatting functions
 export const getLocalizedDay = (locale: 'en' | 'jp' = 'en') => {
     const localeString = locale === 'jp' ? 'ja-JP' : 'en-US';
-    return new Date().toLocaleDateString(localeString, { weekday: 'long' });
+    return new Date().toLocaleDateString(localeString, { weekday: 'long' }).toLowerCase();
 };
 
 export const getLocalizedDate = (locale: 'en' | 'jp' = 'en') => {

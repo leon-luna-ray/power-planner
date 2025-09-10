@@ -4,7 +4,7 @@ import Alpine from "alpinejs";
 import { saveDayEntry, deleteDayEntry, getInitializedEntries } from "@/app/api.ts";
 import { day, date, getWeekDates, getLocalizedDay, getLocalizedDate, year } from "@/utils/date.ts";
 import type { Weekday } from '@/types/Date.ts';
-import { getCurrentUiSettings  } from '@/app/api.ts'
+import { getCurrentUiSettings } from '@/app/api.ts'
 
 declare global {
     interface Window {
@@ -46,10 +46,12 @@ const content = {
     }
 } as const;
 
+
+
 const store = Alpine.reactive({
     // Current language state
     currentLanguage: 'en' as 'en' | 'jp',
-    
+
     title: content.en.title,
     logoText: content.en.logoText,
     subtitle: content.en.subtitle,
@@ -66,12 +68,12 @@ const store = Alpine.reactive({
     deleteDayEntry,
     userEntries,
     handleClick,
-    
+
     toggleDayPanel(dayName: Weekday) {
         console.log('Toggling day panel for:', dayName);
         this.isDayPanelOpen[dayName] = !this.isDayPanelOpen[dayName];
     },
-    
+
     isDayPanelOpen: {
         sunday: false,
         monday: false,
@@ -83,6 +85,17 @@ const store = Alpine.reactive({
     }
 });
 
-Alpine.store("data", store);
+const openTodayPanel = () => {
+    store.isDayPanelOpen[day as keyof typeof store.isDayPanelOpen] = true;
+};
 
-Alpine.start();
+const init = () => {
+    Alpine.store("data", store);
+    Alpine.start();
+    openTodayPanel();
+}
+
+init();
+
+
+
