@@ -62,18 +62,8 @@ const store = Alpine.reactive({
     saveBtn: content.en.saveBtn,
     day,
     date,
-    weekdays: getWeekDates(),
     year,
-    saveDayEntry,
-    deleteDayEntry,
     userEntries,
-    handleClick,
-
-    toggleDayPanel(dayName: Weekday) {
-        console.log('Toggling day panel for:', dayName);
-        this.isDayPanelOpen[dayName] = !this.isDayPanelOpen[dayName];
-    },
-
     isDayPanelOpen: {
         sunday: false,
         monday: false,
@@ -82,7 +72,14 @@ const store = Alpine.reactive({
         thursday: false,
         friday: false,
         saturday: false
-    }
+    },
+    weekdays: getWeekDates(),
+    saveDayEntry,
+    deleteDayEntry,
+    handleClick,
+    toggleDayPanel(dayName: Weekday) {
+        this.isDayPanelOpen[dayName] = !this.isDayPanelOpen[dayName];
+    },
 });
 
 const openTodayPanel = () => {
@@ -96,6 +93,3 @@ const init = () => {
 }
 
 init();
-
-
-
