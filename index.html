@@ -22,13 +22,13 @@
   <div class="h-screen flex flex-col justify-between">
     <div class="bg-gradient-animation h-full w-full fixed top-0 left-0"></div>
     <div class="bg-grid-overlay h-full w-full fixed top-0 left-0"></div>
-    <!-- <div class="scanline-effect" aria-hidden="true"></div> -->
+    <div class="scanline-effect" aria-hidden="true"></div>
     <main>
       <div class="window flex flex-col gap-y-[1.25rem]">
         <!-- Header -->
         <header>
           <div class="container pt-[1rem]">
-            <div class="bg-secondary widget">
+            <div class="bg-secondary widget glow-effect">
               <div class="title-bar primary">
                 <p x-text="$store.data.label"></p>
               </div>
@@ -39,7 +39,7 @@
                     <div class="hidden md:flex justify-end items-center">
                       <p>╔══</p>
                     </div>
-                    <h1 class="glow-effect uppercase px-[1rem] order-first md:order-none col-span-2"
+                    <h1 class="uppercase px-[1rem] order-first md:order-none col-span-2"
                       x-text="$store.data.logoText"></h1>
                     <div class="hidden md:flex justify-start items-center">
                       <p>══╗</p>
@@ -56,7 +56,7 @@
                 <div
                   class="px-[1rem] py-[0.5rem] flex flex-col md:flex-row gap-x-[8px] justify-center items-center bg-gradient-glow font-secondary tracking-[-1px] font-bold text-[1.25rem]">
                   <p class="uppercase" x-text="$store.data.today"></p>
-                  <p id="currentDay" class="lead" x-text="$store.data.day"></p>
+                  <p id="currentDay" class="lead capitalize" x-text="$store.data.day"></p>
                   <p id="currentDate" class="lead" x-text="$store.data.date"></p>
                 </div>
                 <!-- <div class="flex justify-center items-center py-[2rem]">
@@ -91,7 +91,7 @@
             <ul id="time-blocks" x-init="entries = $store.data.userEntries" x-data="{ entries: {} }"
               class="flex flex-col gap-y-[1.25rem]">
               <template x-for="day in $store.data.weekdays">
-                <li x-bind:id="day" x-show="$store.data.isDayPanelOpen[day.dayName]" x-transition class="widget">
+                <li :id="day.dayName" x-show="$store.data.isDayPanelOpen[day.dayName]" x-transition class="widget" :class="{ 'past': day.isPast, 'today': day.isToday }">
                   <div class="title-bar">
                     <p class="lowercase" x-text="day.dayName + '.exe'"></p>
                     <button x-on:click="$store.data.toggleDayPanel(day.dayName)" class="close-window-btn" aria-label="Close window"></button>
@@ -99,7 +99,7 @@
                   <div class="flex-col-1">
                     <div class="flex-col-05">
                       <div class="flex justify-between">
-                        <p class="label-text text-[1.125rem] font-[900]" x-text="day.dayName"></p>
+                        <p class="label-text text-[1.125rem] font-[900] " x-text="day.dayName"></p>
                         <p class="label-text text-[1.125rem] font-[900]" x-text="day.formattedDate"></p>
                       </div>
                       <textarea class="p-[1rem] min-h-[272px] border-beveled-aqua bg-black text-white"

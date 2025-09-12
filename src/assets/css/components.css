@@ -34,5 +34,13 @@
 
 
 .widget {
-    @apply border-beveled bg-gradient-to-r from-teal to-aqua relative pt-[40px] pb-[20px] px-[1.25rem] bg-texture-window;
+    @apply border-beveled bg-gradient-to-r from-teal to-aqua relative pt-[40px] pb-[20px] px-[1.25rem] bg-texture-window-aqua;
+}
+
+.widget.past {
+    @apply bg-texture-window-gray;
+}
+
+.widget.past textarea {
+    @apply border-black;
 }

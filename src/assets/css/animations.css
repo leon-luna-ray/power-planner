@@ -17,11 +17,11 @@
 
     0%,
     100% {
-        box-shadow: 0 0 20px #00c2b2, 0 0 40px #00c2b2, 0 0 60px #00c2b2;
+        box-shadow: 0 0 20px #00c2b2, 0 0 40px #00c2b2, 0 0 100px #00c2b2;
     }
 
     50% {
-        box-shadow: 0 0 10px #00c2b2, 0 0 20px #00c2b2, 0 0 30px #00c2b2;
+        box-shadow: 0 0 10px #00c2b2, 0 0 20px #00c2b2, 0 0 60px #00c2b2;
     }
 }
 

@@ -5,6 +5,7 @@
     --color-blue: #225be0;
     --color-gray: #acb5b2;
     --color-light-gray: #d9d9d6;
+    --color-dark-gray: #2e2e2e;
     --color-navy: #153357;
     --color-red: #ff6c74;
     --color-purple-vivid: #7209b7;
@@ -21,6 +22,6 @@
     --font-auxiliary: 'VT323', monospace;
 
     --animate-gradient-30: gradient 30s ease infinite;
-    --animate-glow: glow 3s ease-in-out infinite;
+    --animate-glow: glow 30s ease-in-out infinite;;
     --animate-scanline: scanline 10s linear infinite;
 }

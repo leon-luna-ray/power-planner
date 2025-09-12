@@ -1,3 +1,5 @@
+import type { Weekday } from '@/types/Date.ts';
+
 // Locale-aware date formatting functions
 export const getLocalizedDay = (locale: 'en' | 'jp' = 'en') => {
     const localeString = locale === 'jp' ? 'ja-JP' : 'en-US';
@@ -6,10 +8,10 @@ export const getLocalizedDay = (locale: 'en' | 'jp' = 'en') => {
 
 export const getLocalizedDate = (locale: 'en' | 'jp' = 'en') => {
     const localeString = locale === 'jp' ? 'ja-JP' : 'en-US';
-    return new Date().toLocaleDateString(localeString, { 
-        month: 'long', 
-        day: 'numeric', 
-        year: 'numeric' 
+    return new Date().toLocaleDateString(localeString, {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
     });
 };
 
@@ -18,6 +20,11 @@ export const day = getLocalizedDay('en');
 export const date = getLocalizedDate('en');
 
 export const weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+
+
+export const isValidWeekday = (day: string): day is Weekday => {
+    return weekdays.includes(day.toLowerCase());
+};
 
 export const getLocalizedWeekdays = (locale: 'en' | 'jp' = 'en') => {
     if (locale === 'jp') {
@@ -28,7 +35,7 @@ export const getLocalizedWeekdays = (locale: 'en' | 'jp' = 'en') => {
 
 export const getWeekDates = (locale: 'en' | 'jp' = 'en') => {
     const today = new Date();
-    const currentDay = today.getDay(); 
+    const currentDay = today.getDay();
 
     const daysToMonday = currentDay === 0 ? 6 : currentDay - 1;
 
@@ -42,28 +49,28 @@ export const getWeekDates = (locale: 'en' | 'jp' = 'en') => {
     for (let i = 0; i < 7; i++) {
         const date = new Date(monday);
         date.setDate(monday.getDate() + i);
-        
-        // Format date according to locale
+
         let formattedDate;
         if (locale === 'jp') {
-            // Japanese format: YYYY年MM月DD日
+            // Japanese
             const year = date.getFullYear();
             const month = String(date.getMonth() + 1).padStart(2, '0');
             const day = String(date.getDate()).padStart(2, '0');
             formattedDate = `${year}年${month}月${day}日`;
         } else {
-            // US format: MM-DD-YYYY
+            // US
             const month = String(date.getMonth() + 1).padStart(2, '0');
             const day = String(date.getDate()).padStart(2, '0');
             const year = date.getFullYear();
             formattedDate = `${month}-${day}-${year}`;
         }
-        
+
         weekDates.push({
             date: date,
             dayName: localizedWeekdays[i],
             formattedDate: formattedDate,
-            isToday: date.toDateString() === today.toDateString()
+            isToday: date.toDateString() === today.toDateString(),
+            isPast: date < today,
         });
     }
 
