@@ -69,45 +69,49 @@ const store = Alpine.reactive({
     saveDayEntry,
     deleteDayEntry,
     toggleDayPanel(dayName: Weekday) {
-        const isCurrentlyOpen = this.isDayPanelOpen[dayName];
+        this.isDayPanelOpen[dayName] = !this.isDayPanelOpen[dayName];
+        this.updateQueryFromPanels();
+    },
+    updateQueryFromPanels() {
+        const openPanels = Object.entries(this.isDayPanelOpen)
+            .filter(([_, isOpen]) => isOpen)
+            .map(([dayName, _]) => dayName);
 
-        if (!isCurrentlyOpen) {
-            this.isDayPanelOpen[dayName] = true;
-            setQueryParam('day', dayName);
+        if (openPanels.length > 0) {
+            setQueryParam('day', openPanels.join(','));
         } else {
             removeQueryParam('day');
         }
     },
-});
-
-const initializePanelFromQuery = () => {
-    const dayQuery = getQueryParam('day');
-    
-    if (dayQuery && isValidWeekday(dayQuery)) {
-        store.isDayPanelOpen[dayQuery] = true;
-    } else {
-        store.isDayPanelOpen[day as keyof typeof store.isDayPanelOpen] = true;
-        setQueryParam('day', day);
-    }
-};
-
-const handleBrowserNavigation = () => {
-    window.addEventListener('popstate', () => {
+    initializePanelsFromQuery() {
         const dayQuery = getQueryParam('day');
-        
-        if (dayQuery && isValidWeekday(dayQuery)) {
-            store.isDayPanelOpen[dayQuery] = true;
+
+        if (dayQuery) {
+            const dayNames = dayQuery.split(',').map(d => d.trim());
+
+            dayNames.forEach(dayName => {
+                if (!isValidWeekday(dayName)) return;
+                this.isDayPanelOpen[dayName] = true;
+            });
+
+            const hasValidDays = dayNames.some(dayName => isValidWeekday(dayName));
+
+            if (!hasValidDays) {
+                this.isDayPanelOpen[day as keyof typeof this.isDayPanelOpen] = true;
+                setQueryParam('day', day);
+            }
         } else {
-            store.isDayPanelOpen[day as keyof typeof store.isDayPanelOpen] = true;
+            // Default to today's panel if no query
+            this.isDayPanelOpen[day as keyof typeof this.isDayPanelOpen] = true;
+            setQueryParam('day', day);
         }
-    });
-};
+    }
+});
 
 const init = () => {
     Alpine.store("data", store);
     Alpine.start();
-    initializePanelFromQuery();
-    handleBrowserNavigation();
+    store.initializePanelsFromQuery();
 }
 
 init();
