@@ -2,8 +2,8 @@ import "@/assets/css/main.css";
 import Alpine from "alpinejs";
 
 import { saveDayEntry, deleteDayEntry, getInitializedEntries } from "@/app/api.ts";
-import { day, date, getWeekDates, getLocalizedDay, getLocalizedDate, year } from "@/utils/date.ts";
-import { getQueryParam, setQueryParam, removeQueryParam, isValidWeekday } from "@/utils/query.ts";
+import { day, date, getWeekDates, getLocalizedDay, getLocalizedDate, year, isValidWeekday } from "@/utils/date.ts";
+import { getQueryParam, setQueryParam, removeQueryParam } from "@/utils/query.ts";
 import type { Weekday } from '@/types/Date.ts';
 
 declare global {

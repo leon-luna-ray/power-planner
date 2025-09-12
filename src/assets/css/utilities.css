@@ -24,11 +24,18 @@
     background-size: 20px 20px;
 }
 
-@utility bg-texture-window {
+@utility bg-texture-window-aqua {
     background: repeating-linear-gradient(0deg,
             var(--color-black),
             var(--color-aqua) 1px,
             var(--color-aqua) 2px);
+}
+
+@utility bg-texture-window-gray {
+    background: repeating-linear-gradient(0deg,
+            var(--color-black),
+            var(--color-gray) 1px,
+            var(--color-gray) 2px);
 }
 
 @utility border-beveled {
@@ -75,6 +82,7 @@
     @apply motion-safe:animate-glow;
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
 }
+
 
 @utility scanline-effect {
     @apply absolute top-0 left-0 right-0 h-[2px] motion-safe:animate-scanline;

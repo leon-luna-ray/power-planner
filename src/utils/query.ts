@@ -1,5 +1,5 @@
 import { weekdays } from '@/utils/date.ts';
-import type { Weekday } from '@/types/Date.ts';
+
 
 export const getQueryParam = (name: string): string | null => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -16,8 +16,4 @@ export const removeQueryParam = (name: string): void => {
     const url = new URL(window.location.href);
     url.searchParams.delete(name);
     window.history.pushState({}, '', url.toString());
-};
-
-export const isValidWeekday = (day: string): day is Weekday => {
-    return weekdays.includes(day.toLowerCase());
 };
