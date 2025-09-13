@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-data>
+<html x-bind:lang="$store.data.htmlLangCode" x-data>
 
 <head>
   <title x-text="$store.data.title"></title>
@@ -32,15 +32,23 @@
               <div class="title-bar primary">
                 <p x-text="$store.data.label"></p>
               </div>
-              <div class="flex-col-1 text-center py-[2rem]">
+              <!-- Language button -->
+              <div class="flex-col-1 text-center py-[2rem] relative">
+                <div class="flex justify-end absolute top-0 right-0 pt-[8px]">
+                  <button class="" x-on:click="$store.data.handleLanguageChange()">
+                    <span :class="{'underline': $store.data.currentLanguage === 'en'}">🇺🇸</span>
+                    <span :class="{'underline': $store.data.currentLanguage === 'jp'}">🇯🇵</span>
+                    <span x-text="$store.data.currentLanguage === 'en' ? 'en' : 'jp'"></span>
+                  </button>
+                </div>
+                <!-- Main Title -->
                 <div class="lg:flex-col-1 text-center">
-                  <!-- Main Title -->
                   <div class="logo-text grid grid-cols-2 md:flex gap-[0.5rem] items-center justify-center">
                     <div class="hidden md:flex justify-end items-center">
                       <p>╔══</p>
                     </div>
-                    <h1 class="uppercase px-[1rem] order-first md:order-none col-span-2"
-                      x-text="$store.data.logoText"></h1>
+                    <h1 class="uppercase px-[1rem] order-first md:order-none col-span-2" x-text="$store.data.logoText">
+                    </h1>
                     <div class="hidden md:flex justify-start items-center">
                       <p>══╗</p>
                     </div>
@@ -59,24 +67,23 @@
                   <p id="currentDay" class="lead capitalize" x-text="$store.data.day"></p>
                   <p id="currentDate" class="lead" x-text="$store.data.date"></p>
                 </div>
-                <!-- <div class="flex justify-center items-center py-[2rem]">
-                  <button class="btn" x-on:click="$store.data.handleClick">🇺🇸/🇯🇵</button>
-                </div> -->
               </div>
               <!-- File menu -->
               <div class="absolute bottom-0 left-0 w-full">
                 <ul
                   class="flex items-center justify-center gap-x-[2rem] gap-y-[1rem] bg-gradient-gray py-[1rem] md:max-h-[88px] flex-wrap px-[2rem] lg:px-0">
+                  <!-- Menu Items -->
                   <template x-for="day in $store.data.weekdays">
                     <li :key="day.dayName" class="file-btn"
                       :class="{ 'active' : $store.data.isDayPanelOpen[day.dayName] }">
                       <button class="flex flex-col items-center gap-y-[0.25rem]"
-                        x-on:click="$store.data.toggleDayPanel(day.dayName)" x-bind:aria-label="`Open file menu for ${day.dayName}`">
+                        x-on:click="$store.data.toggleDayPanel(day.dayName)"
+                        x-bind:aria-label="`Open file menu for ${day.dayName}`">
                         <div class="flex flex-col items-center gap-y-[0.25rem] [&_*]:z-1 relative">
                           <div class="file-btn-indicator" aria-hidden="true"></div>
                           <img src="./src/assets/images/icons/icon-exe.svg" alt="File menu icon">
                         </div>
-                        <p class="lowercase text-[0.85rem] font-[400]" x-text="day.dayName"></p>
+                        <p class="lowercase text-[0.85rem] font-[400]" x-text="day.localizedDay"></p>
                       </button>
                     </li>
                   </template>
@@ -85,26 +92,30 @@
             </div>
           </div>
         </header>
-        <!-- Time Blocks -->
+        <!-- Day windows -->
         <section>
           <div class="container">
             <ul id="time-blocks" x-init="entries = $store.data.userEntries" x-data="{ entries: {} }"
               class="flex flex-col gap-y-[1.25rem]">
+              <!-- Day -->
               <template x-for="day in $store.data.weekdays">
-                <li :id="day.dayName" x-show="$store.data.isDayPanelOpen[day.dayName]" x-transition class="widget" :class="{ 'past': day.isPast, 'today': day.isToday }">
+                <li :id="day.dayName" x-show="$store.data.isDayPanelOpen[day.dayName]" x-transition class="widget"
+                  :class="{ 'past': day.isPast, 'today': day.isToday }">
                   <div class="title-bar">
-                    <p class="lowercase" x-text="day.dayName + '.exe'"></p>
-                    <button x-on:click="$store.data.toggleDayPanel(day.dayName)" class="close-window-btn" aria-label="Close window"></button>
+                    <p class="lowercase" x-text="day.localizedDay + '.exe'"></p>
+                    <button x-on:click="$store.data.toggleDayPanel(day.dayName)" class="close-window-btn"
+                      aria-label="Close window"></button>
                   </div>
                   <div class="flex-col-1">
                     <div class="flex-col-05">
                       <div class="flex justify-between">
-                        <p class="label-text text-[1.125rem] font-[900] " x-text="day.dayName"></p>
+                        <p class="label-text text-[1.125rem] font-[900] " x-text="day.localizedDay"></p>
                         <p class="label-text text-[1.125rem] font-[900]" x-text="day.formattedDate"></p>
                       </div>
                       <textarea class="p-[1rem] min-h-[272px] border-beveled-aqua bg-black text-white"
                         x-model="entries[day.dayName].text"></textarea>
                     </div>
+                    <!-- Save/delete buttons -->
                     <div class="flex items-center justify-end gap-x-[0.85rem]">
                       <button class="btn" x-on:click="$store.data.deleteDayEntry(day)">
                         <p x-text="$store.data.deleteBtn"></p>

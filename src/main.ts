@@ -4,6 +4,7 @@ import Alpine from "alpinejs";
 import { saveDayEntry, deleteDayEntry, getInitializedEntries } from "@/app/api.ts";
 import { day, date, getWeekDates, getLocalizedDay, getLocalizedDate, year, isValidWeekday } from "@/utils/date.ts";
 import { getQueryParam, setQueryParam, removeQueryParam } from "@/utils/query.ts";
+import { getLocalStorageItem, setLocalStorageItem } from "./utils/localStorage.ts";
 import type { Weekday } from '@/types/Date.ts';
 
 declare global {
@@ -14,9 +15,8 @@ declare global {
 
 window.Alpine = Alpine;
 
-const userEntries = await getInitializedEntries() || {};
 
-// Language content
+
 const content = {
     en: {
         title: 'PowerPlanner',
@@ -40,20 +40,40 @@ const content = {
     }
 } as const;
 
-const store = Alpine.reactive({
-    // Current language state
-    currentLanguage: 'en' as 'en' | 'jp',
+const setLanguage = (lang: 'en' | 'jp') => {
+    setLocalStorageItem('powerplanner-lang', lang);
+};
 
-    title: content.en.title,
-    logoText: content.en.logoText,
-    subtitle: content.en.subtitle,
-    label: content.en.label,
-    description: content.en.description,
-    today: content.en.today,
-    deleteBtn: content.en.deleteBtn,
-    saveBtn: content.en.saveBtn,
-    day,
-    date,
+const getCurrentLanguage = (): 'en' | 'jp' => {
+    return getLocalStorageItem('powerplanner-lang') as 'en' | 'jp' || 'en';
+};
+
+const initializeContentForLanguage = (lang: 'en' | 'jp') => {
+    const selectedContent = content[lang];
+    return {
+        currentLanguage: lang,
+        htmlLangCode: lang === 'en' ? 'en-US' : 'ja-JP',
+        title: selectedContent.title,
+        logoText: selectedContent.logoText,
+        subtitle: selectedContent.subtitle,
+        label: selectedContent.label,
+        description: selectedContent.description,
+        today: selectedContent.today,
+        deleteBtn: selectedContent.deleteBtn,
+        saveBtn: selectedContent.saveBtn,
+        day: getLocalizedDay(lang),
+        date: getLocalizedDate(lang),
+        weekdays: getWeekDates(lang)
+    };
+};
+
+const currentLang = getCurrentLanguage();
+const initialContent = initializeContentForLanguage(currentLang);
+const userEntries = await getInitializedEntries() || {};
+
+const store = Alpine.reactive({
+    ...initialContent,
+    currentLanguage: getCurrentLanguage(),
     year,
     userEntries,
     isDayPanelOpen: {
@@ -65,7 +85,6 @@ const store = Alpine.reactive({
         friday: false,
         saturday: false
     },
-    weekdays: getWeekDates(),
     saveDayEntry,
     deleteDayEntry,
     toggleDayPanel(dayName: Weekday) {
@@ -101,12 +120,33 @@ const store = Alpine.reactive({
                 setQueryParam('day', day);
             }
         } else {
-            // Default to today's panel if no query
             this.isDayPanelOpen[day as keyof typeof this.isDayPanelOpen] = true;
             setQueryParam('day', day);
         }
+    },
+    handleLanguageChange() {
+        const newLang = this.currentLanguage === "en" ? "jp" : "en";
+        this.currentLanguage = newLang;
+        this.htmlLangCode = newLang === 'en' ? 'en-US' : 'ja-JP';
+
+        const newContent = content[newLang];
+        this.title = newContent.title;
+        this.logoText = newContent.logoText;
+        this.subtitle = newContent.subtitle;
+        this.label = newContent.label;
+        this.description = newContent.description;
+        this.today = newContent.today;
+        this.deleteBtn = newContent.deleteBtn;
+        this.saveBtn = newContent.saveBtn;
+
+        this.day = getLocalizedDay(newLang);
+        this.date = getLocalizedDate(newLang);
+        this.weekdays = getWeekDates(newLang);
+
+        setLanguage(newLang);
     }
 });
+
 
 const init = () => {
     Alpine.store("data", store);
