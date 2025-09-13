@@ -1,8 +1,19 @@
 import { db } from '@/app/db.ts';
 import { v4 as uuidv4 } from 'uuid';
-import { weekdays } from '@/utils/date.ts';
+import { weekdays, getWeekDates } from '@/utils/date.ts';
 import type { DayEntry, User } from '@/types/schemas.ts';
 import type { Date } from '@/types/Date.ts';
+
+// Helper function to get the Monday of the current week
+const getCurrentWeekMonday = (): string => {
+    const today = new Date();
+    const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+    const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek; // Adjust for Sunday being 0
+    const monday = new Date(today);
+    monday.setDate(today.getDate() + mondayOffset);
+    monday.setHours(0, 0, 0, 0); // Reset to start of day
+    return monday.toISOString().split('T')[0]; // Return YYYY-MM-DD format
+};
 
 export const initializeDatabase = async (): Promise<void> => {
     try {
@@ -56,19 +67,21 @@ export const createLocalUser = async (): Promise<User> => {
 
 export const saveDayEntry = async (day: Date, text: string): Promise<void> => {
     const textString = String(text);
-
     const user = await getCurrentUser();
     const timestamp = new Date().toISOString();
+    const weekStartDate = getCurrentWeekMonday();
+    
     const existing = await db.entries
         .where('user_local_id')
         .equals(user.id!)
-        .and((entry: DayEntry) => entry.day === day.dayName)
+        .and((entry: DayEntry) => entry.day === day.dayName && entry.week_start_date === weekStartDate)
         .first();
 
     const entryData = {
         user_local_id: user.id!,
         day: day?.dayName,
         text: textString,
+        week_start_date: weekStartDate,
         created_at: timestamp,
         updated_at: timestamp
     };
@@ -83,17 +96,17 @@ export const saveDayEntry = async (day: Date, text: string): Promise<void> => {
     }
 };
 
-
 export const deleteDayEntry = async (day: Date): Promise<void> => {
     const msg = `Are you sure you want to delete the entry for ${day.dayName}? This action cannot be undone.`;
     if (!confirm(msg)) return;
 
     const user = await getCurrentUser();
+    const weekStartDate = getCurrentWeekMonday();
 
     await db.entries
         .where('user_local_id')
         .equals(user.id!)
-        .and((entry: DayEntry) => entry.day === day.dayName)
+        .and((entry: DayEntry) => entry.day === day.dayName && entry.week_start_date === weekStartDate)
         .delete();
 
     // TODO improve this to just update the relevant part of the UI
@@ -101,15 +114,21 @@ export const deleteDayEntry = async (day: Date): Promise<void> => {
 };
 
 export const getInitializedEntries = async (): Promise<Record<string, { text: string }>> => {
+    const currentDates = getWeekDates();
+    console.log('Current week dates:', currentDates);
     const user = await getCurrentUser();
+    const weekStartDate = getCurrentWeekMonday();
+    
+    // Only get entries from the current week
     const entries = await db.entries
         .where('user_local_id')
         .equals(user.id!)
+        .and((entry: DayEntry) => entry.week_start_date === weekStartDate)
         .toArray();
 
     const initialized: Record<string, { text: string }> = {};
 
-    // Initialize weekdays
+    // Initialize weekdays - entries will be empty if not from current week
     weekdays.forEach(day => {
         const entry = entries.find((e: DayEntry) => e.day === day);
         initialized[day] = { text: entry?.text || '' };
