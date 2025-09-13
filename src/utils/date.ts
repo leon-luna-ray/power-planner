@@ -73,8 +73,6 @@ export const getWeekDates = (locale: 'en' | 'jp' = 'en') => {
             isToday: date.toDateString() === today.toDateString(),
             isPast: date < today,
         });
-
-        console.log(weekDates[i]);
     }
 
     return weekDates;

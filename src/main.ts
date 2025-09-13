@@ -54,6 +54,7 @@ const initializeContentForLanguage = (lang: 'en' | 'jp') => {
     const selectedContent = content[lang];
     return {
         currentLanguage: lang,
+        htmlLangCode: lang === 'en' ? 'en-US' : 'ja-JP',
         title: selectedContent.title,
         logoText: selectedContent.logoText,
         subtitle: selectedContent.subtitle,
@@ -70,7 +71,7 @@ const initializeContentForLanguage = (lang: 'en' | 'jp') => {
 
 const currentLang = getCurrentLanguage();
 const initialContent = initializeContentForLanguage(currentLang);
-console.log(currentLang)
+
 const store = Alpine.reactive({
     ...initialContent,
     currentLanguage: getCurrentLanguage(),
@@ -127,8 +128,8 @@ const store = Alpine.reactive({
     handleLanguageChange() {
         const newLang = this.currentLanguage === "en" ? "jp" : "en";
         this.currentLanguage = newLang;
-
-        // Update all text properties
+        this.htmlLangCode = newLang === 'en' ? 'en-US' : 'ja-JP';
+        
         const newContent = content[newLang];
         this.title = newContent.title;
         this.logoText = newContent.logoText;
