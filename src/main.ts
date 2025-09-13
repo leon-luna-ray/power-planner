@@ -101,7 +101,6 @@ const store = Alpine.reactive({
                 setQueryParam('day', day);
             }
         } else {
-            // Default to today's panel if no query
             this.isDayPanelOpen[day as keyof typeof this.isDayPanelOpen] = true;
             setQueryParam('day', day);
         }
@@ -121,12 +120,9 @@ const store = Alpine.reactive({
         this.deleteBtn = newContent.deleteBtn;
         this.saveBtn = newContent.saveBtn;
 
-        // Update date formatting based on language
         this.day = getLocalizedDay(newLang);
         this.date = getLocalizedDate(newLang);
         this.weekdays = getWeekDates(newLang);
-
-        console.log(`Language toggled to: ${newLang}`);
     }
 });
 

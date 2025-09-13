@@ -77,7 +77,7 @@
                           <div class="file-btn-indicator" aria-hidden="true"></div>
                           <img src="./src/assets/images/icons/icon-exe.svg" alt="File menu icon">
                         </div>
-                        <p class="lowercase text-[0.85rem] font-[400]" x-text="day.dayName"></p>
+                        <p class="lowercase text-[0.85rem] font-[400]" x-text="day.localizedDay"></p>
                       </button>
                     </li>
                   </template>
@@ -95,14 +95,14 @@
                 <li :id="day.dayName" x-show="$store.data.isDayPanelOpen[day.dayName]" x-transition class="widget"
                   :class="{ 'past': day.isPast, 'today': day.isToday }">
                   <div class="title-bar">
-                    <p class="lowercase" x-text="day.dayName + '.exe'"></p>
+                    <p class="lowercase" x-text="day.localizedDay + '.exe'"></p>
                     <button x-on:click="$store.data.toggleDayPanel(day.dayName)" class="close-window-btn"
                       aria-label="Close window"></button>
                   </div>
                   <div class="flex-col-1">
                     <div class="flex-col-05">
                       <div class="flex justify-between">
-                        <p class="label-text text-[1.125rem] font-[900] " x-text="day.dayName"></p>
+                        <p class="label-text text-[1.125rem] font-[900] " x-text="day.localizedDay"></p>
                         <p class="label-text text-[1.125rem] font-[900]" x-text="day.formattedDate"></p>
                       </div>
                       <textarea class="p-[1rem] min-h-[272px] border-beveled-aqua bg-black text-white"

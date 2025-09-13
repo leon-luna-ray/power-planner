@@ -67,11 +67,14 @@ export const getWeekDates = (locale: 'en' | 'jp' = 'en') => {
 
         weekDates.push({
             date: date,
-            dayName: localizedWeekdays[i],
+            dayName: getLocalizedWeekdays('en')[i],
+            localizedDay: localizedWeekdays[i],
             formattedDate: formattedDate,
             isToday: date.toDateString() === today.toDateString(),
             isPast: date < today,
         });
+
+        console.log(weekDates[i]);
     }
 
     return weekDates;
