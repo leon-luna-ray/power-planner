@@ -32,6 +32,7 @@
               <div class="title-bar primary">
                 <p x-text="$store.data.label"></p>
               </div>
+              <!-- Language button -->
               <div class="flex-col-1 text-center py-[2rem] relative">
                 <div class="flex justify-end absolute top-0 right-0 pt-[8px]">
                   <button class="" x-on:click="$store.data.handleLanguageChange()">
@@ -40,8 +41,8 @@
                     <span x-text="$store.data.currentLanguage === 'en' ? 'en' : 'jp'"></span>
                   </button>
                 </div>
+                <!-- Main Title -->
                 <div class="lg:flex-col-1 text-center">
-                  <!-- Main Title -->
                   <div class="logo-text grid grid-cols-2 md:flex gap-[0.5rem] items-center justify-center">
                     <div class="hidden md:flex justify-end items-center">
                       <p>╔══</p>
@@ -71,6 +72,7 @@
               <div class="absolute bottom-0 left-0 w-full">
                 <ul
                   class="flex items-center justify-center gap-x-[2rem] gap-y-[1rem] bg-gradient-gray py-[1rem] md:max-h-[88px] flex-wrap px-[2rem] lg:px-0">
+                  <!-- Menu Items -->
                   <template x-for="day in $store.data.weekdays">
                     <li :key="day.dayName" class="file-btn"
                       :class="{ 'active' : $store.data.isDayPanelOpen[day.dayName] }">
@@ -90,11 +92,12 @@
             </div>
           </div>
         </header>
-        <!-- Time Blocks -->
+        <!-- Day windows -->
         <section>
           <div class="container">
             <ul id="time-blocks" x-init="entries = $store.data.userEntries" x-data="{ entries: {} }"
               class="flex flex-col gap-y-[1.25rem]">
+              <!-- Day -->
               <template x-for="day in $store.data.weekdays">
                 <li :id="day.dayName" x-show="$store.data.isDayPanelOpen[day.dayName]" x-transition class="widget"
                   :class="{ 'past': day.isPast, 'today': day.isToday }">
@@ -112,6 +115,7 @@
                       <textarea class="p-[1rem] min-h-[272px] border-beveled-aqua bg-black text-white"
                         x-model="entries[day.dayName].text"></textarea>
                     </div>
+                    <!-- Save/delete buttons -->
                     <div class="flex items-center justify-end gap-x-[0.85rem]">
                       <button class="btn" x-on:click="$store.data.deleteDayEntry(day)">
                         <p x-text="$store.data.deleteBtn"></p>

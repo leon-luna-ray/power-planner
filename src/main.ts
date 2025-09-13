@@ -15,6 +15,8 @@ declare global {
 
 window.Alpine = Alpine;
 
+
+
 const content = {
     en: {
         title: 'PowerPlanner',
