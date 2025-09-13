@@ -25,8 +25,11 @@ Object.defineProperty(window, 'confirm', {
 });
 
 // Mock location.reload
+delete (window.location as any).reload;
 Object.defineProperty(window.location, 'reload', {
   value: vi.fn(),
+  writable: true,
+  configurable: true,
 });
 
 beforeEach(() => {
