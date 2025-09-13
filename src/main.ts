@@ -4,6 +4,7 @@ import Alpine from "alpinejs";
 import { saveDayEntry, deleteDayEntry, getInitializedEntries } from "@/app/api.ts";
 import { day, date, getWeekDates, getLocalizedDay, getLocalizedDate, year, isValidWeekday } from "@/utils/date.ts";
 import { getQueryParam, setQueryParam, removeQueryParam } from "@/utils/query.ts";
+import { getLocalStorageItem, setLocalStorageItem } from "./utils/localStorage.ts";
 import type { Weekday } from '@/types/Date.ts';
 
 declare global {
@@ -40,20 +41,43 @@ const content = {
     }
 } as const;
 
-const store = Alpine.reactive({
-    // Current language state
-    currentLanguage: 'en' as 'en' | 'jp',
+const setLanguage = (lang: 'en' | 'jp') => {
+    setLocalStorageItem('powerplanner-lang', lang);
+};
 
-    title: content.en.title,
-    logoText: content.en.logoText,
-    subtitle: content.en.subtitle,
-    label: content.en.label,
-    description: content.en.description,
-    today: content.en.today,
-    deleteBtn: content.en.deleteBtn,
-    saveBtn: content.en.saveBtn,
-    day,
-    date,
+const getLanguage = () => {
+    return getLocalStorageItem('powerplanner-lang') || 'en';
+};
+
+// Get the language first, before setting up any content
+const getCurrentLanguage = (): 'en' | 'jp' => {
+    return getLocalStorageItem('powerplanner-lang') as 'en' | 'jp' || 'en';
+};
+
+// Initialize with the correct language content from the start
+const initializeContentForLanguage = (lang: 'en' | 'jp') => {
+    const selectedContent = content[lang];
+    return {
+        currentLanguage: lang,
+        title: selectedContent.title,
+        logoText: selectedContent.logoText,
+        subtitle: selectedContent.subtitle,
+        label: selectedContent.label,
+        description: selectedContent.description,
+        today: selectedContent.today,
+        deleteBtn: selectedContent.deleteBtn,
+        saveBtn: selectedContent.saveBtn,
+        day: getLocalizedDay(lang),
+        date: getLocalizedDate(lang),
+        weekdays: getWeekDates(lang)
+    };
+};
+
+const currentLang = getCurrentLanguage();
+const initialContent = initializeContentForLanguage(currentLang);
+
+const store = Alpine.reactive({
+    ...initialContent,
     year,
     userEntries,
     isDayPanelOpen: {
@@ -65,7 +89,6 @@ const store = Alpine.reactive({
         friday: false,
         saturday: false
     },
-    weekdays: getWeekDates(),
     saveDayEntry,
     deleteDayEntry,
     toggleDayPanel(dayName: Weekday) {
@@ -123,6 +146,8 @@ const store = Alpine.reactive({
         this.day = getLocalizedDay(newLang);
         this.date = getLocalizedDate(newLang);
         this.weekdays = getWeekDates(newLang);
+
+        setLanguage(newLang);
     }
 });
 
