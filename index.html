@@ -32,7 +32,14 @@
               <div class="title-bar primary">
                 <p x-text="$store.data.label"></p>
               </div>
-              <div class="flex-col-1 text-center py-[2rem]">
+              <div class="flex-col-1 text-center py-[2rem] relative">
+                <div class="flex justify-end absolute top-0 right-0 pt-[8px]">
+                  <button class="" x-on:click="$store.data.handleLanguageChange()">
+                    <span :class="{'underline': $store.data.currentLanguage === 'en'}">🇺🇸</span>
+                    <span :class="{'underline': $store.data.currentLanguage === 'jp'}">🇯🇵</span>
+                    <span x-text="$store.data.currentLanguage === 'en' ? 'en' : 'jp'"></span>
+                  </button>
+                </div>
                 <div class="lg:flex-col-1 text-center">
                   <!-- Main Title -->
                   <div class="logo-text grid grid-cols-2 md:flex gap-[0.5rem] items-center justify-center">
@@ -58,9 +65,6 @@
                   <p class="uppercase" x-text="$store.data.today"></p>
                   <p id="currentDay" class="lead capitalize" x-text="$store.data.day"></p>
                   <p id="currentDate" class="lead" x-text="$store.data.date"></p>
-                </div>
-                <div class="flex justify-center items-center py-[2rem]">
-                  <button class="btn" x-on:click="$store.data.handleLanguageChange()">🇺🇸/🇯🇵</button>
                 </div>
               </div>
               <!-- File menu -->

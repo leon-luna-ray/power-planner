@@ -45,11 +45,6 @@ const setLanguage = (lang: 'en' | 'jp') => {
     setLocalStorageItem('powerplanner-lang', lang);
 };
 
-const getLanguage = () => {
-    return getLocalStorageItem('powerplanner-lang') || 'en';
-};
-
-// Get the language first, before setting up any content
 const getCurrentLanguage = (): 'en' | 'jp' => {
     return getLocalStorageItem('powerplanner-lang') as 'en' | 'jp' || 'en';
 };
@@ -75,9 +70,10 @@ const initializeContentForLanguage = (lang: 'en' | 'jp') => {
 
 const currentLang = getCurrentLanguage();
 const initialContent = initializeContentForLanguage(currentLang);
-
+console.log(currentLang)
 const store = Alpine.reactive({
     ...initialContent,
+    currentLanguage: getCurrentLanguage(),
     year,
     userEntries,
     isDayPanelOpen: {
