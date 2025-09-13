@@ -15,9 +15,6 @@ declare global {
 
 window.Alpine = Alpine;
 
-const userEntries = await getInitializedEntries() || {};
-
-// Language content
 const content = {
     en: {
         title: 'PowerPlanner',
@@ -49,7 +46,6 @@ const getCurrentLanguage = (): 'en' | 'jp' => {
     return getLocalStorageItem('powerplanner-lang') as 'en' | 'jp' || 'en';
 };
 
-// Initialize with the correct language content from the start
 const initializeContentForLanguage = (lang: 'en' | 'jp') => {
     const selectedContent = content[lang];
     return {
@@ -71,6 +67,7 @@ const initializeContentForLanguage = (lang: 'en' | 'jp') => {
 
 const currentLang = getCurrentLanguage();
 const initialContent = initializeContentForLanguage(currentLang);
+const userEntries = await getInitializedEntries() || {};
 
 const store = Alpine.reactive({
     ...initialContent,
@@ -129,7 +126,7 @@ const store = Alpine.reactive({
         const newLang = this.currentLanguage === "en" ? "jp" : "en";
         this.currentLanguage = newLang;
         this.htmlLangCode = newLang === 'en' ? 'en-US' : 'ja-JP';
-        
+
         const newContent = content[newLang];
         this.title = newContent.title;
         this.logoText = newContent.logoText;
