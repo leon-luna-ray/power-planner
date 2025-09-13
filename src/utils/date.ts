@@ -30,7 +30,7 @@ export const getLocalizedWeekdays = (locale: 'en' | 'jp' = 'en') => {
     if (locale === 'jp') {
         return ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日'];
     }
-    return ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    return weekdays;
 };
 
 export const getWeekDates = (locale: 'en' | 'jp' = 'en') => {

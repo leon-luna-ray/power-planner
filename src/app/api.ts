@@ -54,14 +54,6 @@ export const createLocalUser = async (): Promise<User> => {
     return await db.users.get(newUser) as User;
 };
 
-export const getCurrentUiSettings = async () => {
-    const user = await getCurrentUser();
-    return await db.userSettings
-        .where('user_local_id')
-        .equals(user.id!)
-        .first();
-};
-
 export const saveDayEntry = async (day: Date, text: string): Promise<void> => {
     const textString = String(text);
 
