@@ -4,6 +4,7 @@ export interface DayEntry {
   user_local_id: number;
   day: string;
   text: string;
+  week_start_date: string;
   created_at: string;
   updated_at: string;
 }

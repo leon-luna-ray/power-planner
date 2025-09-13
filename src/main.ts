@@ -15,8 +15,6 @@ declare global {
 
 window.Alpine = Alpine;
 
-
-
 const content = {
     en: {
         title: 'PowerPlanner',
@@ -97,7 +95,7 @@ const store = Alpine.reactive({
             .map(([dayName, _]) => dayName);
 
         if (openPanels.length > 0) {
-            setQueryParam('day', openPanels.join(','));
+            setQueryParam('day', openPanels.join('-'));
         } else {
             removeQueryParam('day');
         }
@@ -106,7 +104,7 @@ const store = Alpine.reactive({
         const dayQuery = getQueryParam('day');
 
         if (dayQuery) {
-            const dayNames = dayQuery.split(',').map(d => d.trim());
+            const dayNames = dayQuery.split('-').map(d => d.trim());
 
             dayNames.forEach(dayName => {
                 if (!isValidWeekday(dayName)) return;
