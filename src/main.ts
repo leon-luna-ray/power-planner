@@ -105,8 +105,31 @@ const store = Alpine.reactive({
             this.isDayPanelOpen[day as keyof typeof this.isDayPanelOpen] = true;
             setQueryParam('day', day);
         }
+    },
+    handleLanguageChange() {
+        const newLang = this.currentLanguage === "en" ? "jp" : "en";
+        this.currentLanguage = newLang;
+
+        // Update all text properties
+        const newContent = content[newLang];
+        this.title = newContent.title;
+        this.logoText = newContent.logoText;
+        this.subtitle = newContent.subtitle;
+        this.label = newContent.label;
+        this.description = newContent.description;
+        this.today = newContent.today;
+        this.deleteBtn = newContent.deleteBtn;
+        this.saveBtn = newContent.saveBtn;
+
+        // Update date formatting based on language
+        this.day = getLocalizedDay(newLang);
+        this.date = getLocalizedDate(newLang);
+        this.weekdays = getWeekDates(newLang);
+
+        console.log(`Language toggled to: ${newLang}`);
     }
 });
+
 
 const init = () => {
     Alpine.store("data", store);

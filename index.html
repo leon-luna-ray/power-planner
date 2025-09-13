@@ -39,8 +39,8 @@
                     <div class="hidden md:flex justify-end items-center">
                       <p>╔══</p>
                     </div>
-                    <h1 class="uppercase px-[1rem] order-first md:order-none col-span-2"
-                      x-text="$store.data.logoText"></h1>
+                    <h1 class="uppercase px-[1rem] order-first md:order-none col-span-2" x-text="$store.data.logoText">
+                    </h1>
                     <div class="hidden md:flex justify-start items-center">
                       <p>══╗</p>
                     </div>
@@ -59,9 +59,9 @@
                   <p id="currentDay" class="lead capitalize" x-text="$store.data.day"></p>
                   <p id="currentDate" class="lead" x-text="$store.data.date"></p>
                 </div>
-                <!-- <div class="flex justify-center items-center py-[2rem]">
-                  <button class="btn" x-on:click="$store.data.handleClick">🇺🇸/🇯🇵</button>
-                </div> -->
+                <div class="flex justify-center items-center py-[2rem]">
+                  <button class="btn" x-on:click="$store.data.handleLanguageChange()">🇺🇸/🇯🇵</button>
+                </div>
               </div>
               <!-- File menu -->
               <div class="absolute bottom-0 left-0 w-full">
@@ -71,7 +71,8 @@
                     <li :key="day.dayName" class="file-btn"
                       :class="{ 'active' : $store.data.isDayPanelOpen[day.dayName] }">
                       <button class="flex flex-col items-center gap-y-[0.25rem]"
-                        x-on:click="$store.data.toggleDayPanel(day.dayName)" x-bind:aria-label="`Open file menu for ${day.dayName}`">
+                        x-on:click="$store.data.toggleDayPanel(day.dayName)"
+                        x-bind:aria-label="`Open file menu for ${day.dayName}`">
                         <div class="flex flex-col items-center gap-y-[0.25rem] [&_*]:z-1 relative">
                           <div class="file-btn-indicator" aria-hidden="true"></div>
                           <img src="./src/assets/images/icons/icon-exe.svg" alt="File menu icon">
@@ -91,10 +92,12 @@
             <ul id="time-blocks" x-init="entries = $store.data.userEntries" x-data="{ entries: {} }"
               class="flex flex-col gap-y-[1.25rem]">
               <template x-for="day in $store.data.weekdays">
-                <li :id="day.dayName" x-show="$store.data.isDayPanelOpen[day.dayName]" x-transition class="widget" :class="{ 'past': day.isPast, 'today': day.isToday }">
+                <li :id="day.dayName" x-show="$store.data.isDayPanelOpen[day.dayName]" x-transition class="widget"
+                  :class="{ 'past': day.isPast, 'today': day.isToday }">
                   <div class="title-bar">
                     <p class="lowercase" x-text="day.dayName + '.exe'"></p>
-                    <button x-on:click="$store.data.toggleDayPanel(day.dayName)" class="close-window-btn" aria-label="Close window"></button>
+                    <button x-on:click="$store.data.toggleDayPanel(day.dayName)" class="close-window-btn"
+                      aria-label="Close window"></button>
                   </div>
                   <div class="flex-col-1">
                     <div class="flex-col-05">
