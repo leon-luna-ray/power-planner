@@ -42,7 +42,7 @@ const setLanguage = (lang: 'en' | 'jp') => {
     setLocalStorageItem('powerplanner-lang', lang);
 };
 
-const getCurrentLanguage = (): 'en' | 'jp' => {
+export const getCurrentLanguage = (): 'en' | 'jp' => {
     return getLocalStorageItem('powerplanner-lang') as 'en' | 'jp' || 'en';
 };
 
