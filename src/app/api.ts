@@ -5,10 +5,6 @@ import type { DayEntry, User } from '@/types/schemas.ts';
 import type { Date } from '@/types/Date.ts';
 import { getCurrentLanguage } from '@/main.ts';
 
-// Remove this line - it's causing the circular dependency issue
-// const language = getCurrentLanguage();
-
-// Helper function to get the Monday of the current week
 const getCurrentWeekMonday = (): string => {
     const today = new Date();
     const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
@@ -101,7 +97,6 @@ export const saveDayEntry = async (day: Date, text: string): Promise<void> => {
 };
 
 export const deleteDayEntry = async (day: Date): Promise<void> => {
-    // Move the language call inside the function
     const language = getCurrentLanguage();
     
     const getTranslatedDayName = (dayName: string, lang: 'en' | 'jp'): string => {
