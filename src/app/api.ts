@@ -3,6 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { weekdays, getWeekDates } from '@/utils/date.ts';
 import type { DayEntry, User } from '@/types/schemas.ts';
 import type { Date } from '@/types/Date.ts';
+import { getCurrentLanguage } from '@/main.ts';
+
+// Remove this line - it's causing the circular dependency issue
+// const language = getCurrentLanguage();
 
 // Helper function to get the Monday of the current week
 const getCurrentWeekMonday = (): string => {
@@ -70,7 +74,7 @@ export const saveDayEntry = async (day: Date, text: string): Promise<void> => {
     const user = await getCurrentUser();
     const timestamp = new Date().toISOString();
     const weekStartDate = getCurrentWeekMonday();
-    
+
     const existing = await db.entries
         .where('user_local_id')
         .equals(user.id!)
@@ -97,8 +101,17 @@ export const saveDayEntry = async (day: Date, text: string): Promise<void> => {
 };
 
 export const deleteDayEntry = async (day: Date): Promise<void> => {
-    const msg = `Are you sure you want to delete the entry for ${day.dayName}? This action cannot be undone.`;
-    if (!confirm(msg)) return;
+    // Move the language call inside the function
+    const language = getCurrentLanguage();
+    
+    const msg = () => {
+        if (language === 'jp') {
+            return `${day.dayName}のエントリを削除してもよろしいですか？この操作は元に戻せません。`;
+        }
+        return `Are you sure you want to delete the entry for ${day.dayName}? This action cannot be undone.`;
+    }
+
+    if (!confirm(msg())) return;
 
     const user = await getCurrentUser();
     const weekStartDate = getCurrentWeekMonday();
@@ -118,7 +131,7 @@ export const getInitializedEntries = async (): Promise<Record<string, { text: st
     console.log('Current week dates:', currentDates);
     const user = await getCurrentUser();
     const weekStartDate = getCurrentWeekMonday();
-    
+
     // Only get entries from the current week
     const entries = await db.entries
         .where('user_local_id')
