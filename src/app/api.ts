@@ -104,9 +104,26 @@ export const deleteDayEntry = async (day: Date): Promise<void> => {
     // Move the language call inside the function
     const language = getCurrentLanguage();
     
+    const getTranslatedDayName = (dayName: string, lang: 'en' | 'jp'): string => {
+        if (lang === 'jp') {
+            const dayTranslations: Record<string, string> = {
+                'sunday': '日曜日',
+                'monday': '月曜日', 
+                'tuesday': '火曜日',
+                'wednesday': '水曜日',
+                'thursday': '木曜日',
+                'friday': '金曜日',
+                'saturday': '土曜日'
+            };
+            return dayTranslations[dayName.toLowerCase()] || dayName;
+        }
+        return dayName;
+    };
+    
     const msg = () => {
         if (language === 'jp') {
-            return `${day.dayName}のエントリを削除してもよろしいですか？この操作は元に戻せません。`;
+            const translatedDayName = getTranslatedDayName(day.dayName, language);
+            return `${translatedDayName}のエントリを削除してもよろしいですか？この操作は元に戻せません。`;
         }
         return `Are you sure you want to delete the entry for ${day.dayName}? This action cannot be undone.`;
     }
